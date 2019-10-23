@@ -1,0 +1,18 @@
+product_1:
+  name: "Test"
+  qty: 17
+  description: "There are 17 in stock"
+  price: 99.99
+  status: "active"
+product_2:
+  name: "Test 2"
+  qty: 18
+  description: "There are 18 in stock"
+  price: 50.50
+  status: "active"
+product_3:
+  name: "Test 3"
+  qty: 5
+  description: "There are 5 in stock"
+  price: 499.99
+  status: "retired"
