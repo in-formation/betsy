@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-  root to: => 'homepages#index'
+  root to: 'homepages#index'
   
   resources :users, only:[:show, :index, :destroy]
 
