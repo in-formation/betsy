@@ -5,20 +5,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    user_id = params[:id].to_i
-    @user = User.find_by(id: user_id)
-    unless @user
-      head :not_found
-    end
-  end
-
-  def index
-    @users = User.all
-  end
-
-  def show
     @user = User.find_by(id: params[:id])
-    render_404 unless @user
+    if @user.nil?
+      head :not_found
+      return
+    end
   end
 
   def create
@@ -55,8 +46,8 @@ class UsersController < ApplicationController
 
   private
 
-  def user_params
-    return params.require(:user).permit(:name, :email)
-  end
+  # def user_params
+  #   return params.require(:user).permit(:name, :email)
+  # end
   
 end
