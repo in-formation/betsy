@@ -8,7 +8,8 @@ class ProductsController < ApplicationController
     product_id = params[:id].to_i
     @product = Product.find_by(id: product_id)
     if @product.nil?
-      flash[:error] = "Product not found"
+      flash[:status] = :error
+      flash[:result_text] = "Product not found"
       redirect_to products_path
     end
   end
@@ -20,10 +21,12 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
-      flash[:success] = "#{@product.name} successfully saved!"
+      flash[:status] = :success
+      flash[:result_text] = "#{@product.name} successfully saved!"
       redirect_to product_path(@product.id)
     else
-      flash.now[:error] = "Product not successfully saved"
+      flash.now[:status] = :error
+      flash.now[:result_text] = "Product not successfully saved"
       render new_product_path
     end
   end
@@ -31,7 +34,8 @@ class ProductsController < ApplicationController
   def edit
     @product = Product.find_by(id: params[:id])
     if @product.nil?
-      flash[:error] = "That product does not exist"
+      flash[:status] = :error
+      flash[:result_text] = "That product does not exist"
       redirect_to products_path
       return
     end
@@ -40,15 +44,18 @@ class ProductsController < ApplicationController
   def update
     @product = Product.find_by(id: params[:id])
     if @product.nil?
-      flash[:error] = "That product does not exist"
+      flash[:status] = :error
+      flash[:result_text] = "That product does not exist"
       redirect_to products_path
       return
     elsif @product.update(product_params)
-      flash[:success] = "#{@product.name} successfully updated!"
+      flash[:status] = :success
+      flash[:result_text] = "#{@product.name} successfully updated!"
       redirect_to product_path(@product.id)
       return
     else
-      flash.now[:error] = "#{@product.name} not successfully updated!"
+      flash.now[:status] = :error
+      flash.now[:result_text] = "#{@product.name} not successfully updated!"
       render :edit
     end
   end
