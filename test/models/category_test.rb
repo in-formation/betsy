@@ -58,7 +58,17 @@ describe Category do
 
   describe "custom methods" do
     describe "num_products_in_category method" do
+      it "can return the correct count" do
+        category = categories(:valid_category)
 
+        list_of_products = [products(:product_1), products(:product_2), products(:product_3)]
+
+        list_of_products.each do |product|
+          category.products << product
+        end
+
+        expect(category.num_products_in_category).must_equal 3
+      end
     end
   end
 end
