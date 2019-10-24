@@ -4,16 +4,6 @@ class ProductsController < ApplicationController
     @products = Product.all
   end
   
-  def show
-    product_id = params[:id].to_i
-    @product = Product.find_by(id: product_id)
-    if @product.nil?
-      flash[:status] = :error
-      flash[:result_text] = "Product not found"
-      redirect_to products_path
-    end
-  end
-  
   def new
     user_id = session[:user_id]
     if user_id == nil
@@ -28,23 +18,38 @@ class ProductsController < ApplicationController
     if user_id == nil
       flash.now[:status] = :error
       flash.now[:result_text] = "You do not have permissions to make a new product"
-        redirect_to root_path
+      redirect_to root_path
+    else
+      @product = Product.new(product_params)
+      if @product.save
+        flash[:status] = :success
+        flash[:result_text] = "#{@product.name} successfully saved!"
+        redirect_to product_path(@product.id)
       else
-        @product = Product.new(product_params)
-        # raise
-        if @product.save
-          flash[:status] = :success
-          flash[:result_text] = "#{@product.name} successfully saved!"
-          redirect_to product_path(@product.id)
-        else
-          flash.now[:status] = :error
-          flash.now[:result_text] = "Product not successfully saved"
-          render :new
-        end
+        flash.now[:status] = :error
+        flash.now[:result_text] = "Product not successfully saved"
+        render :new
       end
     end
-    
-    def edit
+  end
+  
+  def show
+    product_id = params[:id].to_i
+    @product = Product.find_by(id: product_id)
+    if @product.nil?
+      flash[:status] = :error
+      flash[:result_text] = "Product not found"
+      redirect_to products_path
+    end
+  end
+  
+  def edit
+    user_id = session[:user_id]
+    if user_id == nil
+      flash.now[:status] = :error
+      flash.now[:result_text] = "You do not have permissions to edit a product"
+      redirect_to root_path
+    else
       @product = Product.find_by(id: params[:id])
       if @product.nil?
         flash[:status] = :error
@@ -53,8 +58,15 @@ class ProductsController < ApplicationController
         return
       end
     end
-    
-    def update
+  end
+  
+  def update
+    user_id = session[:user_id]
+    if user_id == nil
+      flash.now[:status] = :error
+      flash.now[:result_text] = "You do not have permissions to edit a product"
+      redirect_to root_path
+    else
       @product = Product.find_by(id: params[:id])
       if @product.nil?
         flash[:status] = :error
@@ -72,10 +84,10 @@ class ProductsController < ApplicationController
         render :edit
       end
     end
-    
-    private
-    def product_params
-      return params.require(:product).permit(:name, :qty, :price, :description, :status, :user_id)
-    end
   end
   
+  private
+  def product_params
+    return params.require(:product).permit(:name, :qty, :price, :description, :status, :user_id)
+  end
+end
