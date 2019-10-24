@@ -1,0 +1,15 @@
+
+<%= form_with(model: @review, url: [@product, @review]) do |f| %>
+
+  <div>
+  <%= f.label :rating %>
+  <%= f.select :rating, [1,2,3,4,5] %>
+  </div>
+  <div>
+  <%= f.label :review %>
+  <%= f.text_area :review %>
+  </div>
+  <div>
+  <%= f.submit "Submit Review", class: "btn btn-primary" %>
+  </div>
+<% end %>
