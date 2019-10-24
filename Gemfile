@@ -88,6 +88,7 @@ end
 group :test do
   gem 'minitest-rails'
   gem 'minitest-reporters'
+  gem 'rails-controller-testing'
 end
 
 gem "omniauth"
