@@ -42,6 +42,18 @@ describe Category do
         expect(product).must_be_instance_of Product
       end
     end
+
+    it "returns 0 and does not break if there are no products in the category" do
+      category = categories(:valid_category)
+
+      list_of_products = []
+
+      list_of_products.each do |product|
+        category.products << product
+      end
+
+      expect(category.products.count).must_equal 0
+    end
   end
 
   describe "custom methods" do
