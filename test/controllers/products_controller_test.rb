@@ -12,7 +12,8 @@ describe ProductsController do
   
   describe "new" do 
     it "if user is logged in, succeeds" do
-      perform_login(User.first)
+      perform_login
+      # p session.user_id
       get new_product_path
       
       must_respond_with :success
@@ -44,7 +45,9 @@ describe ProductsController do
       
     end
     
-    it "if users is logged in, renders bad_request and does not update the DB" do
+    it "if user is logged in, renders bad_request and does not update the DB" do
+      perform_login(User.first)
+      
       bad_product = { product:  {name: "", qty: 7, price: 149.99, description: "This product is new", status: "active"} }
       
       expect { post products_path, params: bad_product }.wont_change "Product.count"
