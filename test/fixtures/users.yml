@@ -1,0 +1,5 @@
+valid_user:
+  provider: github
+  uid: 111
+  email: valid@user.org
+  name: ValidName
