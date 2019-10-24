@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   delete "/logout", to: "users#destroy", as: "logout"
 
   resources :products, except: :destroy
+  resources :categories, except: :destroy
 end
