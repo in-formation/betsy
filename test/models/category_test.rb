@@ -26,4 +26,27 @@ describe Category do
       refute( is_valid )
     end
   end
+
+  describe "relationships" do
+    it "can have many products" do
+      category = categories(:valid_category)
+
+      list_of_products = [products(:product_1), products(:product_2), products(:product_3)]
+
+      list_of_products.each do |product|
+        category.products << product
+      end
+
+      expect(category.products.count).must_equal 3
+      category.products.each do |product|
+        expect(product).must_be_instance_of Product
+      end
+    end
+  end
+
+  describe "custom methods" do
+    describe "num_products_in_category method" do
+
+    end
+  end
 end
