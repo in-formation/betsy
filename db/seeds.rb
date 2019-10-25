@@ -18,6 +18,25 @@ users = [
 users.each do |user|
   User.create(user)
 end
+puts "Added #{User.count} user records"
+
+
+categories = [
+  {
+    name: "politics"
+  },
+  {
+    name: "lifestyle"
+  },
+  {
+    name: "misc"
+  }
+]
+
+categories.each do |category|
+  Category.create(category)
+end
+puts "Added #{Category.count} user records"
 
 products = [
   {
@@ -97,6 +116,8 @@ products = [
 products.each do |product|
   Product.create(product)
 end
+puts "Added #{Product.count} product records"
+
 
 # USER_FILE = Rails.root.join('db', 'user-seeds.csv')
 # puts "Loading raw user data from #{USER_FILE}"
@@ -118,7 +139,6 @@ end
 #   end
 # end
 
-puts "Added #{User.count} user records"
 # puts "#{user_failures.length} users failed to save"
 
 # PRODUCT_FILE = Rails.root.join('db','product-seeds.csv')
@@ -144,7 +164,6 @@ puts "Added #{User.count} user records"
 #   i += 1
 # end
 
-puts "Added #{Product.count} product records"
 # puts "#{product_failures.length} products failed to save"
 
 # puts "Manually resetting PK sequence on each table"
