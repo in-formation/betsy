@@ -1,10 +1,12 @@
 class ReviewsController < ApplicationController
-
+  
+  skip_before_action :require_login
+  
   def new
     @product = Product.find_by(id: params[:product_id])
     @review = Review.new
   end
-
+  
   def create
     @product = Product.find_by(id: params[:product_id])
     @review = Review.new(review_params)
@@ -19,11 +21,11 @@ class ReviewsController < ApplicationController
       render :new, status: :bad_request
     end
   end
-
+  
   private
-
+  
   def review_params
     return params.require(:review).permit(:rating, :review, :product_id)
   end
-
+  
 end
