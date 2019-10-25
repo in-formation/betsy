@@ -9,7 +9,8 @@ class ApplicationController < ActionController::Base
     else
       @current_order = Order.create
       session[:order_id] = @current_order.id
-  
+    end
+  end
   
   def current_user
     @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
