@@ -13,7 +13,7 @@ describe ProductsController do
   describe "new" do 
     it "if user is logged in, succeeds" do
       perform_login
-      # p session.user_id
+      
       get new_product_path
       
       must_respond_with :success
@@ -48,11 +48,11 @@ describe ProductsController do
     it "if user is logged in, renders bad_request and does not update the DB" do
       perform_login(User.first)
       
-      bad_product = { product:  {name: "", qty: 7, price: 149.99, description: "This product is new", status: "active"} }
+      bad_product = { product:  {qty: 7, price: 149.99, description: "This product is new", status: "active"} }
       
       expect { post products_path, params: bad_product }.wont_change "Product.count"
       
-      must_respond_with :redirect
+      must_respond_with :success
       
     end
     
@@ -133,7 +133,7 @@ describe ProductsController do
     it "if user is logged in, can update an existing product with valid information accurately, and redirect" do
       perform_login(User.first)
       
-      product = Product.create(name: "new product", price: 149.99, user_id: session[:user_id])
+      product = Product.first
       updates = { name: "updated product" }
       
       expect{ patch product_path(product.id), params: {product: updates}}.must_differ "Product.count", 0
@@ -166,6 +166,7 @@ describe ProductsController do
       
       expect{ patch product_path(product.id), params: {product: updates}}.must_differ "Product.count", 0
       
+      must_respond_with :success
     end
     
     it "if user is not logged in, can not update a product" do           
