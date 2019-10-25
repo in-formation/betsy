@@ -159,7 +159,6 @@ describe ProductsController do
     
     it "if user is logged in, does not update a product if the form data violates product validations" do
       perform_login(User.first)
-      # product = Product.create(name: "new product", price: 149.99, qty: 5,  user_id: session[:user_id])
       
       product = Product.first
       updates = { name: nil }
