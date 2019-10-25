@@ -1,5 +1,15 @@
 class ApplicationController < ActionController::Base
+
+  before_action :current_order
   before_action :require_login
+
+  def current_order
+    if session[:order_id]
+      @current_order = Order.find_by(id: session[:order_id])
+    else
+      @current_order = Order.create
+      session[:order_id] = @current_order.id
+  
   
   def current_user
     @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
@@ -12,4 +22,5 @@ class ApplicationController < ActionController::Base
       redirect_to root_path
     end
   end
+      
 end
