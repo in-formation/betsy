@@ -34,7 +34,7 @@ describe ProductsController do
     it "if users is logged in, creates a new product with valid data" do      
       perform_login(User.first)
       
-      new_product = { product:  {name: "new product", price: 149.99, user_id: session[:user_id]} }
+      new_product = { product:  {name: "new product", price: 149.99, qty: 5, user_id: session[:user_id]} }
       
       expect{ post products_path, params: new_product }.must_differ 'Product.count', 1
       
@@ -48,7 +48,7 @@ describe ProductsController do
     it "if user is logged in, renders bad_request and does not update the DB" do
       perform_login(User.first)
       
-      bad_product = { product:  {qty: 7, price: 149.99, description: "This product is new", status: "active"} }
+      bad_product = { product:  {qty: 7, price: 149.99, qty: 5, description: "This product is new", status: "active"} }
       
       expect { post products_path, params: bad_product }.wont_change "Product.count"
       
@@ -59,7 +59,7 @@ describe ProductsController do
     it "if users is not logged in, redirects to root_path for" do      
       user = User.first
       
-      new_product = { product:  {name: "new product", price: 149.99, user_id: user.id} }
+      new_product = { product:  {name: "new product", price: 149.99, qty: 5, user_id: user.id} }
       
       expect{ post products_path, params: new_product }.must_differ 'Product.count', 0
       
@@ -147,8 +147,7 @@ describe ProductsController do
     
     it "if user is logged in, does not update any product if given an invalid id, and responds with a 404" do
       perform_login(User.first)
-      
-      product = Product.create(name: "new product", price: 149.99, user_id: session[:user_id])
+      product = Product.first
       bad_id = "bad-id"
       updates = { name: "updated product" }
       
@@ -160,8 +159,9 @@ describe ProductsController do
     
     it "if user is logged in, does not update a product if the form data violates product validations" do
       perform_login(User.first)
-      product = Product.create(name: "new product", price: 149.99, user_id: session[:user_id])
+      # product = Product.create(name: "new product", price: 149.99, qty: 5,  user_id: session[:user_id])
       
+      product = Product.first
       updates = { name: nil }
       
       expect{ patch product_path(product.id), params: {product: updates}}.must_differ "Product.count", 0
