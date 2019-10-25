@@ -1,12 +1,14 @@
 <main>
   <h2><%= @product.name %></h2>
 
-  <section >
+  <section>
       <div>
-        image
-        <%= @product.price %>
-        <%= @product.qty %>
-        <%= @product.description %>
+        <%= image_tag("image_not_found.png", id: "not-found", alt: "image not available") %>
+        <p class="product-info">
+          <%= @product.price %>
+          <%= @product.qty %>
+          <%= @product.description %>
+        </p>
       </div>
   </section>
 
