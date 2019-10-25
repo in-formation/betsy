@@ -2,7 +2,7 @@ require "test_helper"
 
 describe ProductsController do
   describe "index" do 
-    it "succeeds when there are products" do
+    it "succeeds in getting products list" do
       get products_path
       
       must_respond_with :success

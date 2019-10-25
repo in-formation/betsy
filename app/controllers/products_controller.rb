@@ -1,5 +1,4 @@
 class ProductsController < ApplicationController
-  
   skip_before_action :require_login, only: [:index, :show]
   
   def index
@@ -7,21 +6,10 @@ class ProductsController < ApplicationController
   end
   
   def new
-    # user_id = session[:user_id]
-    # if user_id == nil
-    #   redirect_to root_path
-    # else
     @product = Product.new
-    # end
   end
   
   def create
-    # user_id = session[:user_id]
-    # if user_id == nil
-    #   flash.now[:status] = :error
-    #   flash.now[:result_text] = "You do not have permissions to make a new product"
-    #   redirect_to root_path
-    # else
     @product = Product.new(product_params)
     if @product.save
       flash[:status] = :success
@@ -32,7 +20,6 @@ class ProductsController < ApplicationController
       flash.now[:result_text] = "Product not successfully saved"
       render :new
     end
-    # end
   end
   
   def show
@@ -46,12 +33,6 @@ class ProductsController < ApplicationController
   end
   
   def edit
-    # user_id = session[:user_id]
-    # if user_id == nil
-    #   flash.now[:status] = :error
-    #   flash.now[:result_text] = "You do not have permissions to edit a product"
-    #   redirect_to root_path
-    # else
     @product = Product.find_by(id: params[:id])
     if @product.nil?
       flash[:status] = :error
@@ -59,16 +40,9 @@ class ProductsController < ApplicationController
       redirect_to products_path
       return
     end
-    # end
   end
   
   def update
-    # user_id = session[:user_id]
-    # if user_id == nil
-    #   flash.now[:status] = :error
-    #   flash.now[:result_text] = "You do not have permissions to edit a product"
-    #   redirect_to root_path
-    # else
     @product = Product.find_by(id: params[:id])
     if @product.nil?
       flash[:status] = :error
@@ -85,7 +59,6 @@ class ProductsController < ApplicationController
       flash.now[:result_text] = "#{@product.name} not successfully updated!"
       render :edit
     end
-    # end
   end
   
   private
