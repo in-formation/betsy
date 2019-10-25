@@ -1,0 +1,9 @@
+order1:
+  status: pending
+  email: my@email.com
+  address: 123 Cherry Lane
+  name: batman
+  ccnum: 348
+  expdate: 2345
+  ccv: 123
+  zip: 12345
