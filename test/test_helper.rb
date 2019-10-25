@@ -18,24 +18,30 @@ class ActiveSupport::TestCase
   
   def mock_auth_hash(user)
     return {
-    provider: user.provider,
-    uid: user.uid,
-    info: {
-    email: user.email,
-    nickname: user.name
-    # You can add more fields from
-    # The omniauth hash here
-  }
-}
-end
-
-def perform_login(user = User.first)
+      provider: user.provider,
+      uid: user.uid,
+      info: {
+        email: user.email,
+        nickname: user.name
+        # You can add more fields from
+        # The omniauth hash here
+      }
+    }
+  end
   
-  OmniAuth.config.mock_auth[:github] = 
-  OmniAuth::AuthHash.new(mock_auth_hash(user))
+  def perform_login(user = User.first)
+    
+    OmniAuth.config.mock_auth[:github] = 
+    OmniAuth::AuthHash.new(mock_auth_hash(user))
+    
+    get auth_callback_path(:github)
+    
+    return user
+  end
   
-  get auth_callback_path(:github)
-  
-  return user
-end
+  def create_order(order = Order.first)
+    create_session(:order_id)
+    session[:order_id] = order.id
+    return order
+  end
 end
