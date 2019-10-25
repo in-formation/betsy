@@ -1,7 +1,26 @@
 class ProductsController < ApplicationController
+  skip_before_action :require_login, only: [:index, :show]
   
   def index
     @products = Product.all
+  end
+  
+  def new
+    @product = Product.new
+  end
+  
+  def create
+    @product = Product.new(product_params)
+    @product.user_id = session[:user_id]
+    if @product.save
+      flash[:status] = :success
+      flash[:result_text] = "#{@product.name} successfully saved!"
+      redirect_to product_path(@product.id)
+    else
+      flash.now[:status] = :error
+      flash.now[:result_text] = "Product not successfully saved"
+      render :new
+    end
   end
   
   def show
@@ -14,68 +33,37 @@ class ProductsController < ApplicationController
     end
   end
   
-  def new
-    user_id = session[:user_id]
-    if user_id == nil
-      redirect_to root_path
+  def edit
+    @product = Product.find_by(id: params[:id])
+    if @product.nil?
+      flash[:status] = :error
+      flash[:result_text] = "That product does not exist"
+      redirect_to products_path
+      return
+    end
+  end
+  
+  def update
+    @product = Product.find_by(id: params[:id])
+    if @product.nil?
+      flash[:status] = :error
+      flash[:result_text] = "That product does not exist"
+      redirect_to products_path
+      return
+    elsif @product.update(product_params)
+      flash[:status] = :success
+      flash[:result_text] = "#{@product.name} successfully updated!"
+      redirect_to product_path(@product.id)
+      return
     else
-      @product = Product.new
-    end
-  end
-  
-  def create
-    user_id = session[:user_id]
-    if user_id == nil
       flash.now[:status] = :error
-      flash.now[:result_text] = "You do not have permissions to make a new product"
-        redirect_to root_path
-      else
-        @product = Product.new(product_params)
-        # raise
-        if @product.save
-          flash[:status] = :success
-          flash[:result_text] = "#{@product.name} successfully saved!"
-          redirect_to product_path(@product.id)
-        else
-          flash.now[:status] = :error
-          flash.now[:result_text] = "Product not successfully saved"
-          render :new
-        end
-      end
-    end
-    
-    def edit
-      @product = Product.find_by(id: params[:id])
-      if @product.nil?
-        flash[:status] = :error
-        flash[:result_text] = "That product does not exist"
-        redirect_to products_path
-        return
-      end
-    end
-    
-    def update
-      @product = Product.find_by(id: params[:id])
-      if @product.nil?
-        flash[:status] = :error
-        flash[:result_text] = "That product does not exist"
-        redirect_to products_path
-        return
-      elsif @product.update(product_params)
-        flash[:status] = :success
-        flash[:result_text] = "#{@product.name} successfully updated!"
-        redirect_to product_path(@product.id)
-        return
-      else
-        flash.now[:status] = :error
-        flash.now[:result_text] = "#{@product.name} not successfully updated!"
-        render :edit
-      end
-    end
-    
-    private
-    def product_params
-      return params.require(:product).permit(:name, :qty, :price, :description, :status, :user_id)
+      flash.now[:result_text] = "#{@product.name} not successfully updated!"
+      render :edit
     end
   end
   
+  private
+  def product_params
+    return params.require(:product).permit(:name, :qty, :price, :description, :status)
+  end
+end
