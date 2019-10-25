@@ -4,10 +4,13 @@
   <section>
       <div>
         <%= image_tag("image_not_found.png", id: "not-found", alt: "image not available") %>
-        <p class="product-info">
-          <%= @product.price %>
-          <%= @product.qty %>
-          <%= @product.description %>
+        <p class="product-info"> <%= @product.price %> </p>
+        <p class="product-info"> <%= @product.qty %> </p>
+        <p class="product-info"> <%= @product.description %> </p>
+        <p class="product-info"> Categories: 
+          <% @product.categories.each do |category| %> 
+          <%= category.name %>
+          <% end %>
         </p>
       </div>
   </section>
