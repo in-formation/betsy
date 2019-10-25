@@ -47,14 +47,7 @@ describe Product do
       expect(invalid_product.valid?).must_equal false
     end    
     
-    it "does not create a product if qty is not an integer greater than 0" do
-      user = User.first
-      
-      invalid_product = Product.create(name: nil, price: 58.54,  user_id: user.id)
-      expect(invalid_product.valid?).must_equal false
-    end
-    
-    it "does not create a product if price is not a float" do
+    it "does not create a product if qty is not an integer" do
       user = User.first
       
       invalid_product = Product.create(name: nil, price: 58, qty: 5.5,  user_id: user.id)
