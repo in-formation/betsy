@@ -3,6 +3,7 @@
 
   <section>
       <div>
+        <p class="product-info"> <%= link_to "Edit", edit_product_path(@product.id) %> </p>
         <%= image_tag("image_not_found.png", id: "not-found", alt: "image not available") %>
         <p class="product-info"> <%= @product.price %> </p>
         <p class="product-info"> <%= @product.qty %> </p>
