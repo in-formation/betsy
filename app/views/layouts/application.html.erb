@@ -12,20 +12,57 @@
   <body>
     <header class="app-header__header">
       <h1>
-        <a href="/">bill$ie</a>
-        <small>One Stop Shop for Billionaires</small>
+        bill$ie
       </h1>
 
       <nav class="app-header__nav">
         <ul class="nav app-header__site-nav-container">
-          <li class="nav-item app-header__nav_item"><%= link_to "View all Products", products_path, class: "nav-link"%></li>
-          <li class="nav-item app-header__nav_item"><%= link_to "View all Merchants", users_path, class: "nav-link" %></li>
+          <li class="nav-item app-header__nav_item">
+            <%=link_to "Home", root_path, class:"nav-link" %>
+          </li>
+          <li class="nav-item app-header__nav_item">
+            <%=link_to "Products", products_path, class:"nav-link" %>
+          </li>
+          <li class="nav-item app-header__nav_item">
+            <%=link_to "Categories", categories_path, class:"nav-link" %>
+          </li>
+          <li class="nav-item app-header__nav_item">
+            <%=link_to "Users", users_path, class:"nav-link" %>
+          </li>
         </ul>
         <ul class="nav app-header__user-nav-container">
-          <li class="nav app-header__user-nav-container"><%= link_to "Merchant Login", github_login_path, class:"btn btn-primary"%></li>
+          <% if session[:user_id] == nil%>
+            <li class="nav-item app-header__nav_item">
+            <%=link_to "Log In", github_login_path, class:"btn btn-primary" %>
+            </li>
+          <% else %>
+            <li class="nav-item app-header__nav_item">
+              <%=link_to "Logged in as: #{User.find_by(id: session[:user_id]).name}", user_path( User.find_by(id: session[:user_id]).id ), class:"btn btn-primary" %>
+            </li>
+          <% end %>
+          <% if session[:user_id] != nil%>
+            <li class="nav-item app-header__nav_item">
+            <%=link_to "Log Out", logout_path, method: :delete, class:"btn btn-primary" %>
+            </li>
+          <% end %>
         </ul>
       </nav>
     </header>
+
+    <section class="alert__container">
+      <% flash.each do |name, message| %>
+        <% if name == "warning" %>
+          <div class="alert alert-warning">
+            <%= message %>
+          </div>
+        <% else %>
+          <div class="alert alert-success">
+            <%= message %>
+          </div>
+        <% end %>
+      <% end %>
+    </section>
+
     <%= yield %>
   </body>
 </html>

@@ -1,8 +1,10 @@
 class CategoriesController < ApplicationController
+  skip_before_action :require_login
+  
   def index
     @categories = Category.all
   end
-
+  
   def show
     @category = Category.find_by(id: params[:id])
     if @category.nil?
@@ -10,11 +12,11 @@ class CategoriesController < ApplicationController
       return
     end
   end
-
+  
   def new
     @category = Category.new
   end
-
+  
   def create
     @category = Category.new( category_params )
     if @category.save
@@ -23,11 +25,11 @@ class CategoriesController < ApplicationController
       render new_category_path
     end
   end
-
+  
   def edit
     @category = Category.find_by(id: params[:id] )
   end
-
+  
   def update
     @category = Category.find_by(id: params[:id] )
     if @category.update( category_params )
@@ -36,9 +38,9 @@ class CategoriesController < ApplicationController
       render new_category_path
     end
   end
-
+  
   private             
-
+  
   def category_params
     return params.require(:category).permit(:name)
   end

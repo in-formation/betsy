@@ -7,3 +7,13 @@ order1:
   expdate: 2345
   ccv: 123
   zip: 12345
+
+order2:
+  status: paid
+  email: my@email.com
+  address: 123 Cherry Lane
+  name: robin
+  ccnum: 348
+  expdate: 2345
+  ccv: 123
+  zip: 12345
