@@ -9,7 +9,8 @@ class Product < ApplicationRecord
   validates :qty, presence: true, numericality: {only_integer: true} 
   
   def self.spotlight
-    products = Product.all.sort_by {|product| - product.created_at }
+    products = Product.all.sort_by {|product| - product.name }
+    # sort by product.created_at
     if products
       return products[0..2]
     else
@@ -17,8 +18,14 @@ class Product < ApplicationRecord
     end
   end
   
-  def self.top5
-    products = Product.where(product.reviews: != nil).sort_by {|product| - product.avg_rating }
+  def self.top_rated
+    products = []
+    Product.all.each do |product|
+      if product.reviews.length > 0
+        products << product
+      end
+    end
+    products.sort_by {|product| - product.avg_rating }
     if products
       return products[0..4]
     else

@@ -1,8 +1,6 @@
 <main>
   <h2>All Products</h2>
   <section class="product-list">
-    <%= Product.top5 %>
-    <%= Product.spotlight %>
     <% @products.each do |product| %>
       <div>
         <%= image_tag("image_not_found.png", id: "not-found", alt: "image not available") %>
@@ -11,7 +9,6 @@
           <%= product.price %>
           <%= product.qty %>
           <%= product.description %>
-          <%= product.avg_rating%>
         </p>
       </div>
     <% end %>
