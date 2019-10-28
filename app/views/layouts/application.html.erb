@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Betsy</title>
+    <title>bill$ie</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +10,22 @@
   </head>
 
   <body>
+    <header class="app-header__header">
+      <h1>
+        <a href="/">bill$ie</a>
+        <small>One Stop Shop for Billionaires</small>
+      </h1>
+
+      <nav class="app-header__nav">
+        <ul class="nav app-header__site-nav-container">
+          <li class="nav-item app-header__nav_item"><%= link_to "View all Products", products_path, class: "nav-link"%></li>
+          <li class="nav-item app-header__nav_item"><%= link_to "View all Merchants", users_path, class: "nav-link" %></li>
+        </ul>
+        <ul class="nav app-header__user-nav-container">
+          <li class="nav app-header__user-nav-container"><%= link_to "Merchant Login", github_login_path, class:"btn btn-primary"%></li>
+        </ul>
+      </nav>
+    </header>
     <%= yield %>
   </body>
 </html>
