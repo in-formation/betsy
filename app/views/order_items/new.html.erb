@@ -1,9 +1,0 @@
-<%= form_with(model: @orderitem, url: [@product, @orderitem]) do |f|%>
-  <div>
-    <%= f.label :qty %>
-    <%= f.select :qty, [1..(@product.qty)] %>
-  </div>
-  <div>
-    <%= f.submit "Submit Qty" %>
-  </div>
-<% end %>
