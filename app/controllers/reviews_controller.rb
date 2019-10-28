@@ -9,6 +9,7 @@ class ReviewsController < ApplicationController
   
   def create
     @product = Product.find_by(id: params[:product_id])
+    # binding.pry
     @review = Review.new(review_params)
     @review.product_id = @product.id
     if @review.save
