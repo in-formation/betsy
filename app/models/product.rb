@@ -9,10 +9,13 @@ class Product < ApplicationRecord
   validates :qty, presence: true, numericality: {only_integer: true} 
   
   def self.spotlight
-    products = Product.all.sort_by {|product| - product.name }
-    # sort by product.created_at
+    return Product.all.sample
+  end
+  
+  def self.newly_added
+    products = Product.all.order('created_at DESC')
     if products
-      return products[0..2]
+      return products[0..4]
     else
       return "No products found"
     end
@@ -25,12 +28,7 @@ class Product < ApplicationRecord
         products << product
       end
     end
-    products.sort_by {|product| - product.avg_rating }
-    if products
-      return products[0..4]
-    else
-      return ["No products found"]
-    end
+    products.sort_by {|product| - product.avg_rating }.first
     
   end
   
