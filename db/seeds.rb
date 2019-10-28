@@ -19,28 +19,7 @@ end
 
 puts "#{user_failures.length} users failed to save"
 
-PRODUCT_FILE = Rails.root.join('db','products-seeds.csv')
-puts "Loading raw product data from #{PRODUCT_FILE}"
 
-product_failures = []
-CSV.foreach(PRODUCT_FILE, :headers => true) do |row|
-  product = Product.new
-  product.name = row['name']
-  product.qty = row['qty']
-  product.price = row['price']
-  product.description = row['description']
-  product.status = row['status']
-  product.user_id = User.find(rand(1..3)).id
-  successful = product.save
-  if !successful
-    product_failures << product
-    puts "Failed to save product #{product.inspect}"
-  else
-    puts "Created product: #{product.inspect}"
-  end
-end
-
-puts "#{product_failures.length} products failed to save"
 
 CATEGORY_FILE = Rails.root.join('db','categories-seeds.csv')
 puts "Loading raw product data from #{CATEGORY_FILE}"
@@ -59,6 +38,30 @@ CSV.foreach(CATEGORY_FILE, :headers => true) do |row|
 end
 
 puts "#{category_failures.length} products failed to save"
+
+PRODUCT_FILE = Rails.root.join('db','products-seeds.csv')
+puts "Loading raw product data from #{PRODUCT_FILE}"
+
+product_failures = []
+CSV.foreach(PRODUCT_FILE, :headers => true) do |row|
+  product = Product.new
+  product.name = row['name']
+  product.qty = row['qty']
+  product.price = row['price']
+  product.description = row['description']
+  product.status = row['status']
+  product.user_id = User.find(rand(1..3)).id
+  product.categories << Category.find(rand(1..3))
+  successful = product.save
+  if !successful
+    product_failures << product
+    puts "Failed to save product #{product.inspect}"
+  else
+    puts "Created product: #{product.inspect}"
+  end
+end
+
+puts "#{product_failures.length} products failed to save"
 
 puts "Manually resetting PK sequence on each table"
 ActiveRecord::Base.connection.tables.each do |t|
