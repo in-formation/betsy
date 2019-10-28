@@ -1,6 +1,16 @@
 <main>
-  <h1>Welcome to bill$ie</h1>
+  <section class="spotlight">
+    <h2 class="spotlight__header">
+      <span class="spotlight__header--prefix">Just Added!</span>
+      <%= link_to "product.spotlight.name, products_path(product.spotlight.id)", class:"spotlight__link-to"%>
+    </h2>
+  </section>
 
-  <p><%= link_to "All Sellers", users_path %></p>
-  <p><%= link_to "All Products", products_path %></p>
+  <section class="top_rated">
+    <h2 class="top_rated_header">
+      <span class="top_rated_header--prefix">Top Rated!</span>
+      <%= link_to "product.top_rated.name, products_path(product.top_rated.id)", class:"top_rated__link-to"%>
+    </h2>
+  </section>
+  
 </main>
