@@ -3,7 +3,7 @@
     <h2 class="spotlight__header">
       <span class="spotlight__header--prefix">Just Added!</span>
       <% Product.spotlight.each do |product|%>
-        <%= link_to product.name, products_path(product.id), class:"spotlight__link-to"%>
+        <%= link_to product.name, product_path(product.id), class:"spotlight__link-to"%>
       <% end %>
     </h2>
   </section>
@@ -12,7 +12,7 @@
     <h2 class="top_rated_header">
       <span class="top_rated_header--prefix">Top Rated!</span>
       <% Product.top_rated.each do |product|%>
-        <%= link_to product.name, products_path(product.id), class:"top_rated__link-to"%>
+        <%= link_to product.name, product_path(product.id), class:"top_rated__link-to"%>
       <% end %>
     </h2>
   </section>
