@@ -14,7 +14,7 @@ class Product < ApplicationRecord
     if products
       return products[0..2]
     else
-      return ["No products found"]
+      return "No products found"
     end
   end
   
