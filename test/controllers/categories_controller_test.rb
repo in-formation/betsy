@@ -44,7 +44,7 @@ describe CategoriesController do
     
   end
 
-  describe "create" do
+  describe "create logged in" do
     it 'creates a new category successfully and redirects the user to the category page' do
       perform_login(User.first)
 
@@ -63,7 +63,26 @@ describe CategoriesController do
       must_respond_with :redirect
       must_redirect_to category_path(new_category_id)    
     end
-    
+
+    it "does not create a new category with bad data" do
+      perform_login(User.first)
+
+      category_hash = {
+        category: {
+          name: ""
+        }
+      }
+
+      expect {
+        post categories_path, params: category_hash
+      }.wont_differ 'Category.count'
+
+      assert_equal "Category not successfully saved", flash[:result_text]
+    end
+  end
+  
+  describe "create not logged in" do
+
     it "if users is not logged in, renders page" do      
       bad_category_hash = {
         category: {
