@@ -1,7 +1,11 @@
 require "test_helper"
 
 describe Order do
-  # it "does a thing" do
-  #   value(1+1).must_equal 2
-  # end
+  describe "validations" do
+    it "should be a valid order" do
+      is_valid = orders(:order1).valid?
+
+      assert(is_valid)
+    end
+  end
 end

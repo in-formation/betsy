@@ -3,8 +3,8 @@ order1:
   email: my@email.com
   address: 123 Cherry Lane
   name: batman
-  ccnum: 348
-  expdate: 2345
+  ccnum: 3484239845679812
+  expdate: 10/12
   ccv: 123
   zip: 12345
 
@@ -13,7 +13,7 @@ order2:
   email: my@email.com
   address: 123 Cherry Lane
   name: robin
-  ccnum: 348
-  expdate: 2345
+  ccnum: 348423984567981
+  expdate: 12/45
   ccv: 123
   zip: 12345
