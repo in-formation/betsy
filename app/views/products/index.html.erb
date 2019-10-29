@@ -2,9 +2,13 @@
   <h2>All Products</h2>
   <section class="product-list">
     <% @products.each do |product| %>
-    <div class="product-card">
-        <%= image_tag("image_not_found.png", id: "not-found", alt: "image not available") %>
-        <section class="product-info">
+      <div>
+          <% if product.photo_url == nil %>
+            <%= image_tag("image_not_found.png", id: "not-found", alt: "image not available") %>
+          <% else %>
+            <img src=" <%= product.photo_url %>", class="prod-show-photo">
+          <% end %>
+        <p class="product-info">
           <%=link_to product.name, product_path( product.id ) %>
           <%= product.price %>
           <%= product.qty %>
