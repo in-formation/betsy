@@ -3,7 +3,12 @@
   <section class="product-list">
     <% @products.each do |product| %>
       <div>
-        <%= image_tag("image_not_found.png", id: "not-found", alt: "image not available") %>
+        <img src="
+          <% if product.photo_url.length <= 1 %>
+            <%= image_tag("image_not_found.png", id: "not-found", alt: "image not available") %>
+          <% else %%>
+            <%= product.photo_url %>", class="prod-show-photo">
+          <% end %%>
         <p class="product-info">
           <%=link_to product.name, product_path( product.id ) %>
           <%= product.price %>
