@@ -32,8 +32,9 @@
                 <%= product.qty %>
               </td>
               <td>
-                <%= product.categories %>
-                <%# not sure how joined tables work, will need to edit! %>
+                <% product.categories.each do |cat| %>
+                <%= link_to cat.name, category_path(cat.id) %>
+                <%end%>
               </td>
               <td>
                 <%= product.created_at%>

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get "/auth/github", as: "github_login"
   get "/auth/:provider/callback", to: "users#create", as: "auth_callback"
   delete "/logout", to: "users#destroy", as: "logout"
+  get "/cart", to: "orders#cart", as: "cart"
 
   
   resources :products, except: :destroy do

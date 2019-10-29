@@ -1,0 +1,17 @@
+<main>
+  <h1>Your Cart</h1>
+
+  <%if @items.empty?%>
+    <h2>There's nothing in your cart</h2>
+    <%=link_to "Start Shopping", products_path %>
+  <%else%>
+    <ul>
+
+    <% @items.each do |item| %>
+      <li><%= link_to Product.find(item.product_id).name, product_path(item.product_id) %>
+        
+      </li>
+    <%end%>
+    </ul>
+  <%end%>
+</main> 
