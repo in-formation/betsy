@@ -1,29 +1,28 @@
 <main>
   <h2>All Products</h2>
-  <section id="products-container">
-    <% @products.each do |product| %>
-    <section class="card">
-      <section id="img-container">
-      <% if product.photo_url == nil %>
-        <img src="https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png", id="not-found", alt="image not available", class="card-img-top">
-      <% else %>
-        <img src=" <%= product.photo_url %>", class="card-img-top">
+  <div class="d-flex p-2">
+    <section class="card-columns">
+      <% @products.each do |product| %>
+        <section class="card">
+          <img src="https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png", id="not-found", alt="image not available", class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title">
+              <%=link_to product.name, product_path( product.id ) %>
+            </h5>
+          </div>
+          <div class="card-body">
+            <h6 class="card-text">
+              Cost:
+              <%= product.price %>
+            </h6>
+            <h6 class="card-text">
+              Quantity:
+              <%= product.qty %>
+            </h6>
+          </div>
+        </section>
       <% end %>
-      </section>
-      <div class="card-body">
-        <h5 class="card-title">
-          <%=link_to product.name, product_path( product.id ) %>
-        </h5>
-      </div>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">
-          <%= product.price %>
-        </li>
-        <li class="list-group-item">
-          <%= product.qty %>
-        </li>
-      </ul>
-    <% end %>
-  </section>
+    </section>
+    </div>
   <%=link_to "New Product", new_product_path, class:"nav-link" %>
 </main>
