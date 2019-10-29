@@ -10,7 +10,7 @@ class Product < ApplicationRecord
   validates :qty, presence: true, numericality: {only_integer: true} 
   
   def self.spotlight
-    return Product.all.sample
+    return Product.all.order('qty DESC' ).first
   end
   
   def self.newly_added
@@ -24,13 +24,13 @@ class Product < ApplicationRecord
   
   def self.top_rated
     products = []
+    
     Product.all.each do |product|
       if product.reviews.length > 0
         products << product
       end
     end
     products.sort_by {|product| - product.avg_rating }.first
-    
   end
   
   def avg_rating
