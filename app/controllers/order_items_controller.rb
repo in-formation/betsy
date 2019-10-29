@@ -8,6 +8,13 @@ class OrderItemsController < ApplicationController
   
   def create
     @product = Product.find_by(id: params[:product_id])
+    if @current_order.products.include?(@product)
+      order_item = @current_order.order_items.find_by(product_id: @product.id)
+      order_item.increase_qty(params[:qty].to_i)
+      order_item.save
+      redirect_to cart_path
+      return
+    end
     
     @order_item = OrderItem.new(order_item_params)
     @order_item.order_id = @current_order.id
