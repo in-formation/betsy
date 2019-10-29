@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 2019_10_29_151420) do
     t.string "email"
     t.string "address"
     t.string "name"
-    t.integer "ccnum"
+    t.bigint "ccnum"
     t.string "expdate"
     t.integer "ccv"
     t.string "zip"
