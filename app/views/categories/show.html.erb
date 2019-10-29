@@ -1,0 +1,27 @@
+<main>
+  <h1><%=@category.name%></h1>
+
+    <%if @category.products.empty?%>
+      <h3>There are currently no products in this category</h3>
+    <%else%>
+      <ul>
+        <%@category.products.each do |product|%>
+        <li> 
+          <section>
+              <div>
+                <%= image_tag("image_not_found.png", id: "not-found", alt: "image not available") %>
+                <p class="product-info"> <%= product.price %> </p>
+                <p class="product-info"> <%= product.qty %> </p>
+                <p class="product-info"> <%= product.description %> </p>
+                <p class="product-info"> Categories: 
+                  <% product.categories.each do |category| %> 
+                  <%= category.name %>
+                  <% end %>
+                </p>
+              </div>
+          </section>
+          </li>
+      <%end%>
+      </ul>
+    <%end%>
+  </main>
