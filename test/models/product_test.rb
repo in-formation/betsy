@@ -112,17 +112,24 @@ describe Product do
     it "finds the highest rated product - spotlight" do
       spotlight = Product.spotlight
       
-      expect(spotlight.length).must_equal 3
+      expect(spotlight).must_be_kind_of Product
     end
     
     it "finds newly added products" do
-      products = Product.top_rated
+      product = Product.top_rated
       
-      products.each do |product|
-        product.must_be_kind_of Product
-      end
-      
+      product.must_be_kind_of Product
+      expect(product.name).must_equal products(:product_1).name
     end
     
   end
+  
+  it "finds newly added products" do
+    products = Product.newly_added
+    
+    products.each do |product|
+      product.must_be_kind_of Product
+    end
+  end
+  
 end
