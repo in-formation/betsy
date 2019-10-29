@@ -9,9 +9,15 @@
 
     <% @items.each do |item| %>
       <li><%= link_to Product.find(item.product_id).name, product_path(item.product_id) %>
-        
+      <%= link_to order_order_item_path(@current_order.id, item.id), method: :delete do %>
+        <i class="material-icons">delete</i>
+      <% end %>
       </li>
     <%end%>
     </ul>
   <%end%>
+
+  <button class="btn btn-secondary">
+   <%=link_to "Checkout", checkout_path%>
+  </button>
 </main> 
