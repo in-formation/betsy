@@ -1,9 +1,12 @@
 review1:
-  rating: 4
-  review: perfectly valid review
+  rating: 5
+  review: "perfectly valid review"
   product: :product_1
-
 review2:
-  rating: 3
-  review: another review
+  rating: 1
+  review: "another review"
   product: :product_1
+review3:
+  rating: 3
+  review: "a third review"
+  product: :product_2
