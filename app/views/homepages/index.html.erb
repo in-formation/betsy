@@ -19,7 +19,11 @@
   <section class="top_rated">
     <h2 class="top_rated_header">
       <span class="top_rated_header--prefix">Top Rated!</span>
-      <%= link_to Product.top_rated.name, product_path(Product.top_rated.id), class:"top_rated__link-to"%>
+      <% if Product.top_rated == nil %>
+        <p>No reviews yet!</p>
+      <% else %>
+        <%= link_to Product.top_rated.name, product_path(Product.top_rated.id), class:"top_rated__link-to"%>
+      <% end %>
     </h2>
   </section>
   
