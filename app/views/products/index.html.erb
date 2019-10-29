@@ -1,18 +1,28 @@
 <main>
   <h2>All Products</h2>
-  <section class="product-list">
+  <section class="card">
     <% @products.each do |product| %>
-      <div>
+      <div class="card-body">
           <% if product.photo_url == nil %>
-            <%= image_tag("image_not_found.png", id: "not-found", alt: "image not available") %>
+            <img src="https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png", id:"not-found", alt:"image not available">
           <% else %>
-            <img src=" <%= product.photo_url %>", class="prod-show-photo">
+            <img src=" <%= product.photo_url %>", class="card-img-top">
           <% end %>
-        <p class="product-info">
-          <%=link_to product.name, product_path( product.id ) %>
-          <%= product.price %>
-          <%= product.qty %>
-          <%= product.description %>
+        <p class="card-body">
+          <h5 class="card-title">
+            <%=link_to product.name, product_path( product.id ) %>
+          </h5>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <%= product.price %>
+            </li>
+            <li class="list-group-item">
+              <%= product.qty %>
+            </li>
+            <li class="list-group-item">
+              <%= product.description %>
+            </li>
+          </ul>
         </section>
       </div>
     <% end %>

@@ -2,9 +2,14 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.product-list {
+.card {
+  width: 18rem;
+  height: 18rem;
+}
+
+.card-img-top {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
@@ -14,6 +19,10 @@
   width: 100px;
 }
 
-.product-info {
+.card-body {
   display: block;
+}
+
+.list-group, .list-group-flush {
+
 }
