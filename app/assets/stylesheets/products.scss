@@ -3,11 +3,13 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .card {
-  width: 18rem;
-  height: 18rem;
+  width: 25rem;
+  height: 25rem;
+  margin-bottom: 2em;  
 }
 
 .card-img-top {
+
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -20,9 +22,8 @@
 }
 
 .card-body {
-  display: block;
 }
 
-.list-group, .list-group-flush {
+// .list-group, .list-group-flush {
 
-}
+// }
