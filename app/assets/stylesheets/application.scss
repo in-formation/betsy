@@ -47,6 +47,11 @@ a {
   color: white;
 }
 
+.btn-secondary {
+  color: green;
+}
+
+
 // found on https://codepen.io/liuzenan/pen/nCJpo
 
 .shimmer {
@@ -131,6 +136,14 @@ ul {
 
 .nav-links {
   background-color: black, 0.4 opacity;
+}
+
+.nav-link {
+  color: white;
+}
+
+.nav-link:hover {
+  color: #d4af37;
 }
 
 
