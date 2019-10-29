@@ -18,6 +18,47 @@
 @import "**/*";
 
 
+
+// body {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   margin: 5px;
+//   text-transform: uppercase;
+//   font-family: 'Noto Serif KR', serif;
+//   width: 40em;
+// }
+
+html, main, header {
+  background-color: black;
+}
+
+ul {
+  list-style: none;
+  padding-inline-start: 0px;
+}
+
+.app-header__nav {
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-transform: uppercase;
+  font-family: 'Noto Serif KR', serif;
+}
+
+.app-header__nav ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 1.5em;
+}
+
+.app-header__nav li {
+  margin: 10px;
+}
+
 .product-list {
   display: flex;
   flex-direction: row;
