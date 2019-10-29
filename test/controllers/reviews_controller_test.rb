@@ -16,7 +16,7 @@ describe ReviewsController do
     
     it "creates a new review with valid data" do      
       
-      new_review = { review:  {rating: 4, review: "this sucked", product_id: product.id } }
+      new_review = {rating: 4, review_text: "this sucked", product_id: product.id } 
       
       expect{ post product_reviews_path(product.id), params: new_review }.must_differ 'Review.count', 1
       
