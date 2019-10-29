@@ -8,6 +8,14 @@ class OrdersController < ApplicationController
   
   def show
     @order = Order.find_by(id: params[:id])
+    
+    if @order.nil?
+      flash[:status] = :error
+      flash[:result_text] = "A problem occured: Could not find order"
+      redirect_to root_path
+      return
+    end
+    
     @user = User.find_by(id: session[:user_id])
     user_items = @order.order_items.select { |item| item.product.user_id == @user.id }
     if !user_items.nil?
@@ -17,6 +25,13 @@ class OrdersController < ApplicationController
   
   def edit
     @order = Order.find_by(id: params[:id])
+    if @order.nil?
+      flash[:status] = :error
+      flash[:result_text] = "A problem occured: Could not find order"
+      redirect_to root_path
+      return
+    end
+    
   end
   
   def update
@@ -29,6 +44,7 @@ class OrdersController < ApplicationController
         flash[:result_text] = "Successfully updated status!"
         redirect_to order_path(@order.id)
       else
+        @order.status = "paid"
         flash[:status] = :success
         flash[:result_text] = "Successfully completed order!"
         session[:order_id] = nil
@@ -44,23 +60,6 @@ class OrdersController < ApplicationController
   def checkout
     @order = @current_order
   end
-  
-  
-  # def complete
-
-  #   @order = Order.find_by(order_params)
-  #   @order.status = "paid"
-    
-  #   if @order.update(status: params[:status])
-  #     flash[:status] = :success
-  #     flash[:result_text] = "Successfully checked out!"
-  #     redirect_to root_path
-  #   else
-  #     flash.now[:status] = :error
-  #     flash.now[:result_text] = "A problem occured: Could not complete order"
-  #     render :checkout
-  #   end
-  # end
   
   private
   
