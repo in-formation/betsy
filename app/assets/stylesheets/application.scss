@@ -29,6 +29,7 @@ html, header {
 
 header {
   text-transform: uppercase;
+  font-family: 'Noto Serif KR', serif;
 }
 
 main {
@@ -41,14 +42,6 @@ body {
 
 h1 {
   padding: .5em;
-}
-
-a {
-  color: white;
-}
-
-.btn-secondary {
-  color: green;
 }
 
 
@@ -130,13 +123,9 @@ ul {
   margin: 10px;
 }
 
-.nav-item {
-  color: white;
-}
-
-.nav-links {
-  background-color: black, 0.4 opacity;
-}
+// .nav-links {
+//   background-color: black, 0.4 opacity;
+// }
 
 .nav-link {
   color: white;
@@ -145,7 +134,6 @@ ul {
 .nav-link:hover {
   color: #d4af37;
 }
-
 
 @import "bootstrap";
 /* Import scss content */
