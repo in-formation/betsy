@@ -19,7 +19,7 @@ describe OrderItemsController do
       
       order_item = { orderitem: {
         qty: 2,
-        # order_id: @current_order.id,
+        order_id: @current_order.id,
         product_id: product.id
       }
     }
@@ -39,8 +39,10 @@ describe OrderItemsController do
     
     order_item = { orderitem: {
       qty: 0,
+      order_id: @current_order.id,
       product_id: product.id
-      }}
+      }
+    }
       
       
       expect {
