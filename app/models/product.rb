@@ -10,7 +10,7 @@ class Product < ApplicationRecord
   validates :qty, presence: true, numericality: {only_integer: true} 
   
   def self.spotlight
-    return Product.all.sample
+    return Product.all.order('qty DESC' ).first
   end
   
   def self.newly_added
