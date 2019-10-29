@@ -1,4 +1,4 @@
-<%= form_with(model: @orderitem, url: [@order, @orderitem]) do |f|%>
+<%= form_with(model: @order_item, url: order_order_item_path(@order.id)) do |f|%>
   <div>
     <%= f.label :qty %>
     <%= f.text_field :qty %>
