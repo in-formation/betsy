@@ -7,14 +7,25 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap" rel="app/assets/stylesheets/application.scss">
+    <%= favicon_link_tag asset_path('favicon-dollar.png') %>
   </head>
 
   <body>
     <header class="app-header__header">
-      <h1>
-        bill$ie
-      </h1>
+      <section id="top-section">
+      <section id="site-title">
+        <h1 class="shimmer">
+          bill$ie
+        </h1>
+      </section>
 
+      <section id="cart-section">
+        <%=link_to "Cart", orders_path %>
+      </section>
+      </section>
+
+      <section class="nav-links">
       <nav class="app-header__nav">
         <ul class="nav app-header__site-nav-container">
           <li class="nav-item app-header__nav_item">
@@ -24,16 +35,11 @@
             <%=link_to "Products", products_path, class:"nav-link" %>
           </li>
           <li class="nav-item app-header__nav_item">
-            <%=link_to "New Product", new_product_path, class:"nav-link" %>
-           </li>
-          <li class="nav-item app-header__nav_item">
             <%=link_to "Categories", categories_path, class:"nav-link" %>
           </li>
           <li class="nav-item app-header__nav_item">
             <%=link_to "Users", users_path, class:"nav-link" %>
           </li>
-        </ul>
-        <ul class="nav app-header__user-nav-container">
           <% if session[:user_id] == nil%>
             <li class="nav-item app-header__nav_item">
             <%=link_to "Log In", github_login_path, class:"btn btn-primary" %>
@@ -47,9 +53,11 @@
             <li class="nav-item app-header__nav_item">
             <%=link_to "Log Out", logout_path, method: :delete, class:"btn btn-primary" %>
             </li>
-          <% end %>
-        </ul>
+          <% end %> 
+          </li>
+          </ul>
       </nav>
+      </section>
     </header>
 
     <section class="alert__container">
