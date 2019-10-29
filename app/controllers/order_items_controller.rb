@@ -9,14 +9,15 @@ class OrderItemsController < ApplicationController
   def create
     @product = Product.find_by(id: params[:product_id])
     
-      @order_item = OrderItem.new(order_item_params)
-   
+    @order_item = OrderItem.new(order_item_params)
+    @order_item.order_id = @current_order.id
+    
     
     if @order_item.save
       flash[:status] = :success
       flash[:result_text] = "Successfully added to cart!"
       redirect_to cart_path
-  
+      
     else
       flash[:status] = :error
       flash[:result_text] = "A problem occured: Could not save the item to the cart"
@@ -37,19 +38,18 @@ class OrderItemsController < ApplicationController
     if params[:qty].to_i == 0
       @order_item.destroy
       redirect_to cart_path
-      if @order_item.update(order_item_params)
-        flash[:status] = :success
-        flash[:result_text] = "Successfully updated quantity"
-        redirect_to cart_path
-      else
-        flash[:status] = :error
-        flash[:result_text] = "A problem occurred: Could not update the quantity"
-        redirect_to cart_path
-      end
     end
-  
+    if @order_item.update(order_item_params)
+      flash[:status] = :success
+      flash[:result_text] = "Successfully updated quantity"
+      redirect_to cart_path
+    else
+      flash[:status] = :error
+      flash[:result_text] = "A problem occurred: Could not update the quantity"
+      redirect_to cart_path
+    end
   end
-
+  
   def destroy
     the_correct_order_item = OrderItem.find_by(id: params[:id])
     if the_correct_order_item.nil?
@@ -64,9 +64,11 @@ class OrderItemsController < ApplicationController
     end
     
   end
+  
   private
-
+  
   def order_item_params
-    return params.require(:order_item).permit(:qty, :order_id, :product_id)
+    return params.permit(:qty, :product_id, :order_id)
   end
+  
 end
