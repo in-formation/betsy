@@ -24,13 +24,13 @@ class Product < ApplicationRecord
   
   def self.top_rated
     products = []
+    
     Product.all.each do |product|
       if product.reviews.length > 0
         products << product
       end
     end
     products.sort_by {|product| - product.avg_rating }.first
-    
   end
   
   def avg_rating
