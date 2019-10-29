@@ -83,7 +83,17 @@ describe OrdersController do
       end
 
       it "won't update an existing order with bad data" do
-
+        perform_login
+        order = orders(:order1)
+        
+        updates = {
+          order: {
+            status: "paid",
+            name: ""
+          }
+        }
+        
+        expect{ patch order_path(order.id), params: updates }.wont_change "Order.count"
       end
       
     end
