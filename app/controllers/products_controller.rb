@@ -17,7 +17,7 @@ class ProductsController < ApplicationController
       flash[:result_text] = "#{@product.name} successfully saved!"
       redirect_to product_path(@product.id)
     else
-      flash.now[:status] = :error
+      flash.now[:status] = :warning
       flash.now[:result_text] = "Product not successfully saved"
       render :new
     end
@@ -27,7 +27,7 @@ class ProductsController < ApplicationController
     product_id = params[:id].to_i
     @product = Product.find_by(id: product_id)
     if @product.nil?
-      flash[:status] = :error
+      flash[:status] = :warning
       flash[:result_text] = "Product not found"
       redirect_to products_path
     end
@@ -36,7 +36,7 @@ class ProductsController < ApplicationController
   def edit
     @product = Product.find_by(id: params[:id])
     if @product.nil?
-      flash[:status] = :error
+      flash[:status] = :warning
       flash[:result_text] = "That product does not exist"
       redirect_to products_path
       return
@@ -46,7 +46,7 @@ class ProductsController < ApplicationController
   def update
     @product = Product.find_by(id: params[:id])
     if @product.nil?
-      flash[:status] = :error
+      flash[:status] = :warning
       flash[:result_text] = "That product does not exist"
       redirect_to products_path
       return
@@ -56,7 +56,7 @@ class ProductsController < ApplicationController
       redirect_to product_path(@product.id)
       return
     else
-      flash.now[:status] = :error
+      flash.now[:status] = :warning
       flash.now[:result_text] = "#{@product.name} not successfully updated!"
       render :edit
     end
@@ -64,6 +64,6 @@ class ProductsController < ApplicationController
   
   private
   def product_params
-    return params.require(:product).permit(:name, :qty, :price, :description, :status)
+    return params.require(:product).permit(:name, :qty, :price, :description, :status, category_ids: [])
   end
 end
