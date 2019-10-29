@@ -137,3 +137,19 @@ ul {
 @import "bootstrap";
 /* Import scss content */
 @import "**/*";
+
+.product-list {
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   justify-content: space-evenly;
+ }
+
+ #not-found, .prod-show-photo {
+   height: 100px;
+   width: 100px;
+ }
+
+ .product-info {
+   display: block;
+ }
