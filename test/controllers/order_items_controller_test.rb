@@ -17,30 +17,30 @@ describe OrderItemsController do
       
       product = products(:product_1)
       
-      order_item = { orderitem: {
+      order_item = {
         qty: 2,
-        # order_id: @current_order.id,
         product_id: product.id
       }
-    }
+      
+      
+      
+      expect {
+        post product_order_items_path(product.id), params: order_item
+      }.must_change "OrderItem.count", 1
+      oi = OrderItem.last
+      
+      must_respond_with :redirect
+      must_redirect_to cart_path
+    end
     
-    
-    expect {
-      post product_order_items_path(product.id), params: order_item
-    }.must_change "OrderItem.count", 1
-    oi = OrderItem.last
-    
-    must_respond_with :redirect
-    must_redirect_to order_path(oi.order_id)
-  end
-  
-  it "does not create an order_item when bad data given" do
-    product = products(:product_1)
-    
-    order_item = { orderitem: {
-      qty: 0,
-      product_id: product.id
-      }}
+    it "does not create an order_item when bad data given" do
+      product = products(:product_1)
+      
+      order_item = {
+        qty: 0,
+        product_id: product.id
+      }
+      
       
       
       expect {
@@ -72,40 +72,37 @@ describe OrderItemsController do
       
       product = products(:product_1)
       order_item = order_items(:oi1)
-      params = {
-        order_item: { 
-          qty: 13 
-        }
+      params = { 
+        qty: 13 
       }
       
       
+      
       expect {
         patch order_order_item_path(order_item.order_id, order_item.id), params: params
       }.wont_change "OrderItem.count"
       
       
-      must_respond_with :redirect
-      must_redirect_to order_path(order_item.order_id)
+      must_redirect_to cart_path
     end
     
-      it "does not update an order_item when bad data given" do
+    it "does not update an order_item when bad data given" do
       
-        order_item = order_items(:oi1)
-    
-        params = {
-          order_item: { 
-            qty: 13 
-          }
-        }
-    
-    
+      order_item = order_items(:oi1)
+      
+      params = { 
+        qty: 13 
+      }
+      
+      
+      
       expect {
         patch order_order_item_path(order_item.order_id, order_item.id), params: params
       }.wont_change "OrderItem.count"
-    
-    
+      
+      
       must_respond_with :redirect
-    
+      
     end
   end
   
