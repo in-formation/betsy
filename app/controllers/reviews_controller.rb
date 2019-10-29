@@ -10,7 +10,7 @@ class ReviewsController < ApplicationController
   def create
     @product = Product.find_by(id: params[:product_id])
     # binding.pry
-    @review = Review.new(review_params)
+    @review = Review.new(rating: params[:rating], review_text: params[:review_text], product_id: @product.id)
     @review.product_id = @product.id
     if @review.save
       flash[:status] = :success
@@ -26,8 +26,8 @@ class ReviewsController < ApplicationController
   
   private
   
-  def review_params
-    return params.require(:review).permit(:rating, :review, :product_id)
-  end
+  # def review_params
+  #   return params.require(:review).permit(:rating, :review_text, :product_id)
+  # end
   
 end
