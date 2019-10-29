@@ -7,5 +7,15 @@ describe Order do
 
       assert(is_valid)
     end
+
+    it "is invalid if a name is not present" do
+      order = orders(:order1)
+      order.name = ""
+
+      is_valid = order.valid?
+
+      refute(is_valid)
+    end
+
   end
 end
