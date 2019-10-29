@@ -1,12 +1,12 @@
 review1:
   rating: 5
-  review: "perfectly valid review"
+  review_text: "perfectly valid review"
   product: :product_1
 review2:
   rating: 1
-  review: "another review"
+  review_text: "another review"
   product: :product_1
 review3:
   rating: 3
-  review: "a third review"
+  review_text: "a third review"
   product: :product_2

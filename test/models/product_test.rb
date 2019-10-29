@@ -70,7 +70,7 @@ describe Product do
       
       expect(product).must_respond_to :categories
       product.categories.each do |category|
-        category.must_be_kind_of Category
+        expect(category).must_be_kind_of Category
       end
     end
     
@@ -80,7 +80,7 @@ describe Product do
       expect(product.order_items.count).must_equal 2
       expect(product).must_respond_to :order_items
       product.order_items.each do |order_item|
-        order_item.must_be_kind_of OrderItem
+        expect(order_item).must_be_kind_of OrderItem
       end
     end
     
@@ -90,7 +90,7 @@ describe Product do
       expect(product.reviews.count).must_equal 2
       expect(product).must_respond_to :reviews
       product.reviews.each do |review|
-        review.must_be_kind_of Review
+        expect(review).must_be_kind_of Review
       end
     end
   end
@@ -118,7 +118,7 @@ describe Product do
     it "finds newly added products" do
       product = Product.top_rated
       
-      product.must_be_kind_of Product
+      expect(product).must_be_kind_of Product
       expect(product.name).must_equal products(:product_1).name
     end
     
@@ -128,7 +128,7 @@ describe Product do
     products = Product.newly_added
     
     products.each do |product|
-      product.must_be_kind_of Product
+      expect(product).must_be_kind_of Product
     end
   end
   
