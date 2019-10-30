@@ -40,14 +40,4 @@ class User < ApplicationRecord
     end
     return orders
   end
-  
-  def order_items_list(status = nil)
-    if status == nil
-      order_items = OrderItem.where(product_id: Product.where(user_id: self.id))
-    else
-      order_items = OrderItem.where(product_id: Product.where(user_id: self.id)).where(order_id: Order.where(status: status))
-    end
-    return order_items.order('order_id ASC')
-  end
-  
 end

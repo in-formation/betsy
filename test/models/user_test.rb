@@ -57,4 +57,30 @@ describe User do
       end 
     end
   end
+  
+  describe "custom methods" do
+    it "calculates total revenue correctly" do
+      user = users(:valid_user)
+      
+      expect(user.total_revenue).must_equal "1899.93"
+    end
+    
+    it "calculates total revenue correctly for a status" do
+      user = users(:valid_user)
+      
+      expect(user.total_revenue("complete")).must_equal "1699.95"
+    end
+    
+    it "calculates the total number of orders correctly" do
+      user = users(:valid_user)
+      
+      expect(user.order_list.count).must_equal 3
+    end
+    
+    it "calculates the total number of orders correctly for a status" do
+      user = users(:valid_user)
+      
+      expect(user.order_list("paid").count).must_equal 1
+    end
+  end
 end
