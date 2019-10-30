@@ -50,6 +50,7 @@ CSV.foreach(PRODUCT_FILE, :headers => true) do |row|
   product.price = row['price']
   product.description = row['description']
   product.status = row['status']
+  product.photo_url = row['photo_url']
   product.user_id = User.find(rand(1..3)).id
   product.categories << Category.find(rand(1..3))
   successful = product.save
