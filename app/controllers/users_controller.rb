@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :require_login
+  skip_before_action :require_login, except: [:dashboard]
   
   def index
     @users = User.all
@@ -43,6 +43,10 @@ class UsersController < ApplicationController
     flash[:result_text] = "Successfully logged out!"
     
     redirect_to root_path
+  end
+  
+  def dashboard
+    @user = User.find_by(id: session[:user_id])
   end
   
   private

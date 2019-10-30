@@ -77,7 +77,7 @@ describe Product do
     it "contains many order items" do
       product = products(:product_1)
       
-      expect(product.order_items.count).must_equal 2
+      expect(product.order_items.count).must_equal 3
       expect(product).must_respond_to :order_items
       product.order_items.each do |order_item|
         expect(order_item).must_be_kind_of OrderItem

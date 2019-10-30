@@ -51,7 +51,7 @@
             </li>
           <% else %>
             <li class="nav-item app-header__nav_item">
-              <%=link_to "Logged in as: #{User.find_by(id: session[:user_id]).name}", user_path( User.find_by(id: session[:user_id]).id ), class:"btn btn-secondary" %>
+              <%=link_to "Logged in as: #{User.find_by(id: session[:user_id]).name}", dashboard_path, class:"btn btn-secondary" %>
             </li>
           <% end %>
           <% if session[:user_id] != nil%>

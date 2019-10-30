@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   get "/cart", to: "orders#cart", as: "cart"
   get "/checkout", to: "orders#checkout", as: "checkout"
   post "/orders/:id", to: "orders#complete", as: "complete_order"
-
+  get "/dashboard", to: "users#dashboard", as: "dashboard"
+  
   
   resources :products, except: :destroy do
     resources :order_items, only: [:new, :create]
@@ -21,5 +22,5 @@ Rails.application.routes.draw do
   resources :orders do
     resources :order_items, only: [:edit, :update, :destroy]
   end
-
+  
 end
