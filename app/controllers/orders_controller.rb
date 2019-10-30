@@ -37,18 +37,20 @@ class OrdersController < ApplicationController
   def update
     
     @order = Order.find_by(id: params[:id])
-    
-    if @order.update(order_params)
-      if @order.status == "complete"
-        flash[:status] = :success
-        flash[:result_text] = "Successfully updated status!"
-        redirect_to order_path(@order.id)
-      else
-        @order.status = "paid"
+    if params[:status] == "complete"
+      @order.update(order_params)
+      flash[:status] = :success
+      flash[:result_text] = "Successfully updated status!"
+      redirect_to order_path(@order.id)
+    elsif @order.status == "pending"
+      @order.status = "paid"
+      if @order.update(order_params)
         flash[:status] = :success
         flash[:result_text] = "Successfully completed order!"
         session[:order_id] = nil
         redirect_to root_path
+      else
+        render :checkout
       end
     else
       flash[:status] = :error
