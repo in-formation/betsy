@@ -37,7 +37,10 @@
                     <%= order.status.capitalize%>
                   <% end %>
                 </td>
-                <td> </td>
+                <td>
+                <% if order.status != "pending"%>
+                  <%=format_date(order.order_place)%></td>
+                <% end %>
                 <td> 
                   <% order.order_items.each do |item| %>
                     <% if item.product.user_id == @user.id %>
