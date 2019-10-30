@@ -4,16 +4,22 @@
 .dashboard-table-status {
   width: 30%;
 }
-.dashboard-table-info {
+.dashboard-rev-table-info {
   width: 10%;
 }
-.dashboard-table {
+.dashboard-rev-table {
   width: 75%;
   margin-left: auto; 
   margin-right: auto;
   border: none;
 }
 
-thead, td {
+.dashboard-order-table {
+  width: 75%;
+  margin-left: auto; 
+  margin-right: auto;
+}
+
+thead {
   padding: 5px;
 }

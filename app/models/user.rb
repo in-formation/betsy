@@ -25,7 +25,7 @@ class User < ApplicationRecord
     return '%.2f' % order_items.sum.to_f
   end
   
-  def orders(status = nil)
+  def order_list(status = nil)
     if status == nil
       order_items = OrderItem.where(product_id: Product.where(user_id: self.id))
     else
