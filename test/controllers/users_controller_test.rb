@@ -67,4 +67,11 @@ describe UsersController do
       expect(session[:user_id]).must_be_nil
     end
   end
+
+  describe "destroy" do
+    it "ends the session when the user clicks logout" do
+      delete logout_path
+      must_redirect_to root_path
+    end
+  end
 end
