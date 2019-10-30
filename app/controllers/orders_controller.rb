@@ -44,6 +44,7 @@ class OrdersController < ApplicationController
       redirect_to order_path(@order.id)
     elsif @order.status == "pending"
       @order.status = "paid"
+      @order.update_qty
       @order.order_place = Time.now
       if @order.update(order_params)
         flash[:status] = :success

@@ -11,6 +11,16 @@ class Order < ApplicationRecord
   validates :ccv, presence: true, numericality: { only_integer: true }, length: { is: 3 }, if: :status_not_pending?
   validates :status, presence: true
   
+  
+  def update_qty
+    self.order_items.each do |item|
+      item.product.qty -= item.qty
+      item.product.save
+    end
+  end
+  
+  private
+  
   def status_not_pending?
     status != "pending"
   end
