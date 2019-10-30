@@ -14,20 +14,15 @@
 
   <body>
     <header class="app-header__header">
-      <section id="top-section">
       <section id="site-title">
-        <h1 class="shimmer">
-          bill$ie
+        <h1>
+          <%= link_to "bill$ie", root_path, class:"shimmer" %>
         </h1>
       </section>
 
-      <section id="cart-section">
-        <%=link_to "Cart", cart_path, class:"nav-link" %>
-      </section>
-
-      <section class="nav-links">
       <nav class="app-header__nav">
         <ul class="nav app-header__site-nav-container">
+          <li><%=link_to "Cart", cart_path, class:"nav-link" %></li>
           <li class="nav-item app-header__nav_item">
             <%=link_to "Home", root_path, class:"nav-link" %>
           </li>
@@ -63,24 +58,25 @@
             <% end %>
             </div>
           </li>
-          <% if session[:user_id] == nil%>
-            <li class="nav-item app-header__nav_item">
-            <%=link_to "Log In", github_login_path, class:"btn btn-secondary" %>
-            </li>
-          <% else %>
-            <li class="nav-item app-header__nav_item">
-              <%=link_to "Logged in as: #{User.find_by(id: session[:user_id]).name}", dashboard_path, class:"btn btn-secondary" %>
-            </li>
-          <% end %>
-          <% if session[:user_id] != nil%>
-            <li class="nav-item app-header__nav_item">
-            <%=link_to "Log Out", logout_path, method: :delete, class:"btn btn-secondary" %>
-            </li>
-          <% end %> 
+          <div id="login-buttons">
+            <% if session[:user_id] == nil%>
+              <li class="nav-item app-header__nav_item">
+              <%=link_to "Log In", github_login_path, class:"btn btn-secondary" %>
+              </li>
+            <% else %>
+              <li class="nav-item app-header__nav_item">
+                <%=link_to "Logged in as: #{User.find_by(id: session[:user_id]).name}", dashboard_path, class:"btn btn-secondary" %>
+              </li>
+            <% end %>
+            <% if session[:user_id] != nil%>
+              <li class="nav-item app-header__nav_item">
+              <%=link_to "Log Out", logout_path, method: :delete, class:"btn btn-secondary" %>
+              </li>
+            <% end %> 
+          </div>
           </li>
           </ul>
       </nav>
-      </section>
     </header>
 
     <section class="alert__container">
