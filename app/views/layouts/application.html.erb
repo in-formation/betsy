@@ -6,6 +6,7 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap" rel="app/assets/stylesheets/application.scss">
     <%= favicon_link_tag asset_path('favicon-dollar.png') %>
@@ -21,8 +22,7 @@
       </section>
 
       <section id="cart-section">
-        <%=link_to "Cart", cart_path %>
-      </section>
+        <%=link_to "Cart", cart_path, class:"nav-link" %>
       </section>
 
       <section class="nav-links">
@@ -35,14 +35,19 @@
             <%=link_to "Products", products_path, class:"nav-link" %>
           </li>
           <li class="nav-item app-header__nav_item">
-            <%=link_to "Categories", categories_path, class:"nav-link" %>
+            <%=link_to "Categories", categories_path, class:"nav-link"%>
+            <%# <div class="dropdown-content">
+              <% categories.each do |category|%>
+                <%#= link_to category.name, category_path(category.id)%>
+              <%# end %>
+            <%# </div> %>
           </li>
           <li class="nav-item app-header__nav_item">
-            <%=link_to "Users", users_path, class:"nav-link" %>
+            <%=link_to "Merchants", users_path, class:"nav-link" %>
           </li>
           <% if session[:user_id] == nil%>
             <li class="nav-item app-header__nav_item">
-            <%=link_to "Log In", github_login_path, class:"btn btn-primary" %>
+            <%=link_to "Log In", github_login_path, class:"btn btn-secondary" %>
             </li>
           <% else %>
             <li class="nav-item app-header__nav_item">
@@ -51,7 +56,7 @@
           <% end %>
           <% if session[:user_id] != nil%>
             <li class="nav-item app-header__nav_item">
-            <%=link_to "Log Out", logout_path, method: :delete, class:"btn btn-primary" %>
+            <%=link_to "Log Out", logout_path, method: :delete, class:"btn btn-secondary" %>
             </li>
           <% end %> 
           </li>

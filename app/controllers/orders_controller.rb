@@ -52,8 +52,8 @@ class OrdersController < ApplicationController
       end
     else
       flash[:status] = :error
-      flash[:result_text] = "A problem occured: Could not update order status"
-      redirect_to order_path(@order.id)
+      flash[:result_text] = "A problem occured. Please try again."
+      redirect_to request.referrer
     end
   end
   
