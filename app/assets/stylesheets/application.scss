@@ -29,6 +29,7 @@ html, header {
 
 header {
   text-transform: uppercase;
+  font-family: 'Noto Serif KR', serif;
 }
 
 main {
@@ -43,9 +44,6 @@ h1 {
   padding: .5em;
 }
 
-a {
-  color: white;
-}
 
 // found on https://codepen.io/liuzenan/pen/nCJpo
 
@@ -53,7 +51,7 @@ a {
   display: flex;
   color:white;
   
-  background: #acacac -webkit-gradient(linear, 100% 0, 0 0, from(#acacac), color-stop(0.5, #ffffff), to(#acacac));
+  background: #d4af37 -webkit-gradient(linear, 100% 0, 0 0, from(#d4af37), color-stop(0.5, #ffffff), to(#d4af37));
   font-family: 'Noto Serif KR', serif;
   font-size: 4em;
   font-style: italic;
@@ -125,31 +123,18 @@ ul {
   margin: 10px;
 }
 
-.nav-item {
+// .nav-links {
+//   background-color: black, 0.4 opacity;
+// }
+
+.nav-link {
   color: white;
 }
 
-.nav-links {
-  background-color: black, 0.4 opacity;
+.nav-link:hover {
+  color: #d4af37;
 }
-
 
 @import "bootstrap";
 /* Import scss content */
 @import "**/*";
-
-.product-list {
-   display: flex;
-   flex-direction: row;
-   flex-wrap: wrap;
-   justify-content: space-evenly;
- }
-
- #not-found, .prod-show-photo {
-   height: 100px;
-   width: 100px;
- }
-
- .product-info {
-   display: block;
- }

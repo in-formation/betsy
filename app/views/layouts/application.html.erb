@@ -22,8 +22,7 @@
       </section>
 
       <section id="cart-section">
-        <%=link_to "Cart", cart_path %>
-      </section>
+        <%=link_to "Cart", cart_path, class:"nav-link" %>
       </section>
 
       <section class="nav-links">
@@ -36,23 +35,28 @@
             <%=link_to "Products", products_path, class:"nav-link" %>
           </li>
           <li class="nav-item app-header__nav_item">
-            <%=link_to "Categories", categories_path, class:"nav-link" %>
+            <%=link_to "Categories", categories_path, class:"nav-link"%>
+            <%# <div class="dropdown-content">
+              <% categories.each do |category|%>
+                <%#= link_to category.name, category_path(category.id)%>
+              <%# end %>
+            <%# </div> %>
           </li>
           <li class="nav-item app-header__nav_item">
-            <%=link_to "Users", users_path, class:"nav-link" %>
+            <%=link_to "Merchants", users_path, class:"nav-link" %>
           </li>
           <% if session[:user_id] == nil%>
             <li class="nav-item app-header__nav_item">
-            <%=link_to "Log In", github_login_path, class:"btn btn-primary" %>
+            <%=link_to "Log In", github_login_path, class:"btn btn-secondary" %>
             </li>
           <% else %>
             <li class="nav-item app-header__nav_item">
-              <%=link_to "Logged in as: #{User.find_by(id: session[:user_id]).name}", user_path( User.find_by(id: session[:user_id]).id ), class:"btn btn-primary" %>
+              <%=link_to "Logged in as: #{User.find_by(id: session[:user_id]).name}", user_path( User.find_by(id: session[:user_id]).id ), class:"btn btn-secondary" %>
             </li>
           <% end %>
           <% if session[:user_id] != nil%>
             <li class="nav-item app-header__nav_item">
-            <%=link_to "Log Out", logout_path, method: :delete, class:"btn btn-primary" %>
+            <%=link_to "Log Out", logout_path, method: :delete, class:"btn btn-secondary" %>
             </li>
           <% end %> 
           </li>
