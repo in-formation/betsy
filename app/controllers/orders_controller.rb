@@ -64,6 +64,14 @@ class OrdersController < ApplicationController
     @order = @current_order
   end
   
+  def update_status
+    @order = Order.find_by(id: params[:id])
+    @order.status = "complete"
+    @order.save
+    
+    redirect_to request.referrer
+  end
+  
   private
   
   def order_params
