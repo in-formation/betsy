@@ -13,16 +13,12 @@ class User < ApplicationRecord
     return user
   end
   
-  def total_revenue
-    order_items = OrderItem.where(product_id: Product.where(user_id: self.id)).where(order_id: Order.where.not(status: ['pending', 'cancelled']))
-    order_items = order_items.map do |item|
-      item.product.price * item.qty
+  def total_revenue(status = nil)
+    if status == nil
+      order_items = OrderItem.where(product_id: Product.where(user_id: self.id)).where(order_id: Order.where.not(status: ['pending', 'cancelled']))
+    else
+      order_items = OrderItem.where(product_id: Product.where(user_id: self.id)).where(order_id: Order.where(status: status))
     end
-    return order_items.sum.to_f
-  end
-  
-  def total_revenue_by_status(status)
-    order_items = OrderItem.where(product_id: Product.where(user_id: self.id)).where(order_id: Order.where(status: status))
     order_items = order_items.map do |item|
       item.product.price * item.qty
     end
@@ -43,6 +39,15 @@ class User < ApplicationRecord
       end
     end
     return orders
+  end
+  
+  def order_items_list(status = nil)
+    if status == nil
+      order_items = OrderItem.where(product_id: Product.where(user_id: self.id))
+    else
+      order_items = OrderItem.where(product_id: Product.where(user_id: self.id)).where(order_id: Order.where(status: status))
+    end
+    return order_items.order('order_id ASC')
   end
   
 end
