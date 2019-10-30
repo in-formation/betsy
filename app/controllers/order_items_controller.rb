@@ -42,10 +42,6 @@ class OrderItemsController < ApplicationController
     @order_item = OrderItem.find_by(id: params[:id])
     @order = @order_item.order
     
-    if params[:qty].to_i == 0
-      @order_item.destroy
-      redirect_to cart_path
-    end
     if @order_item.update(order_item_params)
       flash[:status] = :success
       flash[:result_text] = "Successfully updated quantity"
