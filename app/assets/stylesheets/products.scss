@@ -1,16 +1,24 @@
 // Place all the styles related to the Products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-#products-container {
-  // display: flex;
-  // justify-content: center;
+
+
+.d-flex, .p-2 {
+  display: flex;
+  // justify-content: space-around;
   // flex-wrap: wrap;
+  // flex-direction: column;
+  margin: 2em;
+}
+
+.card-columns {
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 .card {
-  width: 50px;
+  width: 4em;
   height: auto;
-  margin: 2em;  
 }
 
 .card-img-top {
@@ -31,4 +39,21 @@
 .card-body {
   display: flex;
   justify-content: space-around;
+}
+
+.product-btn-container {
+  display: block;
+  float: right;
+  margin-bottom: 4em;
+  margin-right: 2em;
+  background-color: red;
+
+}
+.new-product-btn {
+  opacity: 0.2;
+  // display: flex;
+  // align-items: right;
+
+  // margin: auto;
+  // align-items: end;
 }
