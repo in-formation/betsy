@@ -46,7 +46,7 @@ describe User do
   end
   
   describe "relationships" do
-    it "has a product" do
+    it "has products" do
       user = User.first
       
       product = Product.create(name: "product", price: 599.99, qty: 5, user_id: user.id)
