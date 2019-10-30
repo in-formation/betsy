@@ -1,3 +1,19 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.dashboard-table-status {
+  width: 30%;
+}
+.dashboard-table-info {
+  width: 10%;
+}
+.dashboard-table {
+  width: 75%;
+  margin-left: auto; 
+  margin-right: auto;
+  border: none;
+}
+
+thead, td {
+  padding: 5px;
+}

@@ -18,7 +18,7 @@ class User < ApplicationRecord
     order_items = order_items.map do |item|
       item.product.price * item.qty
     end
-    return order_items.sum
+    return order_items.sum.to_f
   end
   
   def total_revenue_by_status(status)
@@ -26,10 +26,10 @@ class User < ApplicationRecord
     order_items = order_items.map do |item|
       item.product.price * item.qty
     end
-    return order_items.sum
+    return '%.2f' % order_items.sum.to_f
   end
   
-  def order_count(status = nil)
+  def orders(status = nil)
     if status == nil
       order_items = OrderItem.where(product_id: Product.where(user_id: self.id))
     else
@@ -42,6 +42,7 @@ class User < ApplicationRecord
         orders << item.order_id
       end
     end
-    return orders.count
+    return orders
   end
+  
 end

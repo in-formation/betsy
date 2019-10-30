@@ -1,0 +1,70 @@
+<html>
+  <body>
+    <main>
+      <section>
+        <h2>Merchant Summary: <%= @user.name %></h2>
+        <p>Joined site <%= @user.created_at %></p>
+      </section>
+
+
+      <section>
+        <h2> Orders </h2>
+        <% @user.orders.each do |order| %>
+          <% order = Order.find_by(id: order) %>
+          Order id: <%= order.id %>
+          <p> Products: </p>
+          <% order.products.each do |product| %>
+            <% if product.user_id == @user.id %>
+              <p> <%= product.name %> </p>
+              <p> <%= product.qty %> </p>
+            <% end %>
+          <% end %>
+        <% end %>
+      </section>
+      <section>
+        <table class="dashboard-table">
+          <thead>
+            <tr>
+              <th class="dashboard-table-status"><h3>Revenue</h3></th>
+              <th class="dashboard-table-info"> </th>
+              <th class="dashboard-table-status"><h3>Orders</h3></th>
+              <th class="dashboard-table-info"> </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="dashboard-table-status">Total Revenue for Pending Orders:</td>
+              <td class="dashboard-table-info">$<%=@user.total_revenue_by_status("pending")%></td>
+              <td class="dashboard-table-status">Total Pending Orders:</td>
+              <td class="dashboard-table-info"><%=@user.orders("pending").count%></td>
+            </tr>
+            <tr>
+              <td class="dashboard-table-status">Total Revenue for Paid Orders:</td>
+              <td class="dashboard-table-info">$<%=@user.total_revenue_by_status("paid")%></td>
+              <td class="dashboard-table-status">Total Paid Orders:</td>
+              <td class="dashboard-table-info"><%=@user.orders("paid").count%></td>
+            </tr>
+            <tr>
+              <td class="dashboard-table-status">Total Revenue for Complete Orders:</td>
+              <td class="dashboard-table-info">$<%=@user.total_revenue_by_status("complete")%></td>
+              <td class="dashboard-table-status">Total Complete Orders:</td>
+              <td class="dashboard-table-info"><%=@user.orders("complete").count%></td>
+            </tr>
+            <tr>
+              <td class="dashboard-table-status">Total Revenue for Cancelled Orders:</td>
+              <td class="dashboard-table-info">$<%=@user.total_revenue_by_status("cancelled")%></td>
+              <td class="dashboard-table-status">Total Cancelled Orders:</td>
+              <td class="dashboard-table-info"><%=@user.orders("cancelled").count%></td>
+            </tr>
+            <tr>
+              <td class="dashboard-table-status">Total Revenue:</td>
+              <td class="dashboard-table-info">$<%=@user.total_revenue%></td>
+              <td class="dashboard-table-status">Total Orders:</td>
+              <td class="dashboard-table-info"><%=@user.orders.count%></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </body>
+</html>
