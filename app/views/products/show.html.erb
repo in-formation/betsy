@@ -16,7 +16,9 @@
         </p>
       </div>
 
-      <%= render :template => 'reviews/new' %>
+      <% if @product.user_id != session[:user_id] %>
+        <%= render :template => 'reviews/new' %>
+      <% end %>
 
       <%= render :template => 'order_items/new' %>
       <div>
