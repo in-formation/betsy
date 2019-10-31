@@ -2,7 +2,7 @@
     <main>
       <section>
         <h2>Merchant Summary: <%= @user.name %></h2>
-        <p>Joined site <%= @user.created_at %></p>
+        <p>Joined site <%= format_date(@user.created_at) %></p>
       </section>
 
     <section>
@@ -37,7 +37,7 @@
                 <%end%>
               </td>
               <td>
-                <%= product.created_at%>
+                <%= format_date(product.created_at)%>
               </td>
             <% end %>
           </tr>
