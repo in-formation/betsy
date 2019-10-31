@@ -1,15 +1,15 @@
 <main>
   <h1>REVIEW YOUR ORDER</h1>
 
-  <section>
-    <ul>
+  <section class="confsection">
+    <ul class="conful">
       <li>PLACED: <%=format_date(@order.order_place)%></li>
       <li>STATUS: <%=@order.status.upcase%></li>
       <li>TOTAL: $<%=sprintf('%.2f', @order.total)%></li>
     </ul>
     
   </section>
-  <section>
+  <section class="confsection">
     <table id="confirmation">
       <thead>
         <td></td>
