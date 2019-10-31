@@ -1,19 +1,21 @@
 <html>
   <body>
-    <main>
-      <section>
-        <h2>Merchant Summary: <%= @user.name %></h2>
-        <p>Joined site <%= format_date(@user.created_at) %></p>
-      </section>
+    <main id="dashboard">
+      <div class="dashboard-header">
+        <section>
+          <h2>Merchant Summary: <%= @user.name %></h2>
+          <p>Joined site <%= format_date(@user.created_at) %></p>
+        </section>
+
+        <section>
+          <%= link_to "Add a product", new_product_path, class:"btn btn-primary"%>
+          <%= link_to "View products", user_path(@user.id), class:"btn btn-primary"%>
+          <%= link_to "Add a category", new_category_path, class:"btn btn-primary"%>
+        </section>
+      </div>
 
       <section>
-        <%= link_to "Add a product", new_product_path, class:"btn btn-primary"%>
-        <%= link_to "View products", user_path(@user.id), class:"btn btn-primary"%>
-        <%= link_to "Add a category", new_category_path, class:"btn btn-primary"%>
-      </section>
-
-      <section>
-        <h2> Orders </h2>
+      
         <table class="dashboard-order-table table">
           <thead>
             <tr>
