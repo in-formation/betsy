@@ -44,6 +44,8 @@ class OrdersController < ApplicationController
       redirect_to order_path(@order.id)
     elsif @order.status == "pending"
       @order.status = "paid"
+      @order.update_qty
+      @order.order_place = Time.now
       if @order.update(order_params)
         flash[:status] = :success
         flash[:result_text] = "Successfully completed order!"
@@ -61,6 +63,14 @@ class OrdersController < ApplicationController
   
   def checkout
     @order = @current_order
+  end
+  
+  def update_status
+    @order = Order.find_by(id: params[:id])
+    @order.status = "complete"
+    @order.save
+    
+    redirect_to request.referrer
   end
   
   private
