@@ -16,6 +16,7 @@ order2:
   expdate: 10/12
   ccv: 123
   zip: 12345
+  order_place: <%= Time.now.utc.to_s(:db) %>
 order3:
   status: complete
   email: my@email.com
