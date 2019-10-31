@@ -9,17 +9,22 @@
       <thead>
         <td>PRODUCT</td>
         <td>QUANTITY</td>
+        <td>PRICE</td>
         <td>REMOVE FROM CART</td>
       </thead>
     <% @items.each do |item| %>
       <tbody>
           <td><%= link_to Product.find(item.product_id).name, product_path(item.product_id) %></td>
           <td><%=item.qty%></td>
+          <td>$<%=sprintf('%.2f',(item.qty * item.product.price))%>
           <td><%= link_to order_order_item_path(@current_order.id, item.id), method: :delete do %>
             <i class="material-icons">delete</i>
           <% end %></td>
-      </tbody>
       <%end%>
+        <tr>
+          <td>TOTAL: $<%=sprintf('%.2f', @current_order.total)%></td>
+        </tr>
+      </tbody>
     </table>
   </div>
   <div>
