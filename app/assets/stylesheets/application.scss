@@ -118,15 +118,6 @@ ul {
   color: white;
 }
 
-
-// .app-header__nav ul {
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: space-around;
-//   align-items: center;
-//   margin-bottom: 1.5em;
-// }
-
 .app-header__nav li {
   margin: 10px;
 }
@@ -135,9 +126,14 @@ ul {
   color: white;
 }
 
-.nav-link:hover {
+.nav-link a:hover {
   color: #d4af37;
 }
+
+.nav-item a:hover {
+  color: #d4af37;
+}
+
 
 
 @import "bootstrap";
