@@ -18,6 +18,14 @@ class Order < ApplicationRecord
       item.product.save
     end
   end
+
+  def total
+    total = 0.0
+    self.order_items.each do |oi|
+      total += (oi.qty * oi.product.price)
+    end
+    return total
+  end
   
   private
   

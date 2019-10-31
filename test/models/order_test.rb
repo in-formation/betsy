@@ -169,6 +169,14 @@ describe Order do
       end
       
     end
+
+    describe "total" do
+      it "will return the total cost of all items in the order" do
+        order = orders(:order1)
+        expect(order.total).must_equal 299.96999999999997
+      end
+
+    end
     
   end
   

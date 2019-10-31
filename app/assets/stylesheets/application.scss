@@ -31,11 +31,11 @@ html, header {
 
 
 main {
-  background-color: silver;
+  background-color: #242424;
 }
 
-body {
-  background: #000;
+body, footer {
+  background: #242424;
 }
 
 h1 {
@@ -137,7 +137,40 @@ ul {
 }
 
 
+#dashboard *, footer {
+  color: white;
+}
 
+.dashboard-header {
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+.nav-link:hover {
+  color: #d4af37;
+}
+
+#footer * {
+  background: black;
+  color: white;
+}
+
+#footer-list {
+  padding-top: 10px;
+}
+
+#footer-list li{
+  text-decoration: none;
+}
+
+#footer-list li a:hover {
+  color: #d4af37;
+}
+
+.copyright {
+  text-align: center;
+  font-size: .75em;
+}
 @import "bootstrap";
 /* Import scss content */
 @import "**/*";
