@@ -4,8 +4,11 @@
   <section>
       <div>
         <p class="product-info"> <%= link_to "Edit", edit_product_path(@product.id) %> </p>
-        <%= image_tag(@product.photo_url, :alt => @product.name, class:"card-img-top") %>
-        <%# <img src="https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png", id:"not-found", alt:"image not available"> %>
+          <% if @product.photo_url == nil || @product.photo_url.length < 1 %>
+            <%= image_tag("https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png", :alt => "not found", class:"card-img-top") %>
+          <% else %>
+            <%= image_tag(@product.photo_url, :alt => @product.name, class:"card-img-top") %>
+          <% end %>        
         <p class="product-info"> <%= @product.price %> </p>
         <p class="product-info"> <%= @product.qty %> </p>
         <p class="product-info"> <%= @product.description %> </p>
@@ -16,7 +19,9 @@
         </p>
       </div>
 
-      <%= render :template => 'reviews/new' %>
+      <% if @product.user_id != session[:user_id] %>
+        <%= render :template => 'reviews/new' %>
+      <% end %>
 
       <%= render :template => 'order_items/new' %>
       <div>

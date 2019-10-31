@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   skip_before_action :require_login, only: [:index, :show]
   
   def index
-    @products = Product.all
+    @products = Product.where(status: "active")
   end
   
   def new
@@ -35,6 +35,12 @@ class ProductsController < ApplicationController
   
   def edit
     @product = Product.find_by(id: params[:id])
+    if @product.user_id != session[:user_id]
+      flash[:status] = :warning
+      flash[:result_text] = "You do not have permission to edit this product"
+      redirect_to product_path(@product.id)
+      return
+    end
     if @product.nil?
       flash[:status] = :warning
       flash[:result_text] = "That product does not exist"
