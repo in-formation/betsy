@@ -27,10 +27,6 @@ html, header {
   background-color: black;
 }
 
-header {
-  text-transform: uppercase;
-  font-family: 'Noto Serif KR', serif;
-}
 
 main {
   background-color: silver;
@@ -51,9 +47,9 @@ h1 {
   display: flex;
   color:white;
   
-  background: #d4af37 -webkit-gradient(linear, 100% 0, 0 0, from(#d4af37), color-stop(0.5, #ffffff), to(#d4af37));
+  background: #d4af37 -webkit-gradient(linear, 100% 0, 0 0, from(#d4af37), color-stop(0.5, #FAFAD2), to(#d4af37));
   font-family: 'Noto Serif KR', serif;
-  font-size: 4em;
+  font-size: 3em;
   font-style: italic;
   
   background-position: -4rem top; /*50px*/
@@ -61,9 +57,9 @@ h1 {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   -webkit-animation-name: shimmer;
-  -webkit-animation-duration: 2.2s;
+  -webkit-animation-duration: 1.9s;
   -webkit-animation-iteration-count: infinite;
-  -webkit-background-size: 4rem 100%; /*50px*/
+  -webkit-background-size: 20rem 100%; /*50px*/
   
 }
 
@@ -92,8 +88,9 @@ ul {
 }
 
 #site-title {
-  display: flex;
   float: left;
+  grid-column:1;
+  grid-row:1;
 }
 
 #cart-section {
@@ -101,24 +98,34 @@ ul {
   margin-right: 7em;
 }
 
+.app-header__header {
+  max-width: 100%;
+  padding: 2rem 1rem 0.5rem 1rem;
+  display: grid;
+  text-transform: uppercase;
+  font-family: 'Noto Serif KR', serif;
+}
 
 .app-header__nav {
+  grid-column:1;
+  grid-row:2;
   background-color: black;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
   letter-spacing: 2px;
   font-family: 'Noto Serif KR', serif;
   color: white;
 }
 
-.app-header__nav ul {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  margin-bottom: 1.5em;
-}
+
+// .app-header__nav ul {
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: space-around;
+//   align-items: center;
+//   margin-bottom: 1.5em;
+// }
 
 .app-header__nav li {
   margin: 10px;

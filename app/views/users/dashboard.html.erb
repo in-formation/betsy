@@ -32,12 +32,15 @@
                 <td>
                   <% if order.status == "paid"%>
                     <p><%= order.status.capitalize %> </p>
-                    <p><%= link_to "Mark as shipped", root_path, class:"btn btn-primary btn-sm" %></p>
+                    <p><%= link_to "Mark as Complete", update_status_path(order.id), method: :patch, class:"btn btn-primary" %></p>
                   <% else %>
                     <%= order.status.capitalize%>
                   <% end %>
                 </td>
-                <td> </td>
+                <td>
+                <% if order.status != "pending"%>
+                  <%=format_date(order.order_place)%></td>
+                <% end %>
                 <td> 
                   <% order.order_items.each do |item| %>
                     <% if item.product.user_id == @user.id %>
