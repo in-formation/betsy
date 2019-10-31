@@ -2,6 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.carousel {
+  width:350px;
+  height:350px;
+}
+
 .homepages-container {
   display: grid;
   grid-row: 3;
