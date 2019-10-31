@@ -35,16 +35,16 @@ class ProductsController < ApplicationController
   
   def edit
     @product = Product.find_by(id: params[:id])
-    if @product.user_id != session[:user_id]
-      flash[:status] = :warning
-      flash[:result_text] = "You do not have permission to edit this product"
-      redirect_to product_path(@product.id)
-      return
-    end
     if @product.nil?
       flash[:status] = :warning
       flash[:result_text] = "That product does not exist"
       redirect_to products_path
+      return
+    end
+    if @product.user_id != session[:user_id]
+      flash[:status] = :warning
+      flash[:result_text] = "You do not have permission to edit this product"
+      redirect_to product_path(@product.id)
       return
     end
   end
