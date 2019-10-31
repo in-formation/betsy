@@ -120,15 +120,6 @@ ul {
   color: white;
 }
 
-
-// .app-header__nav ul {
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: space-around;
-//   align-items: center;
-//   margin-bottom: 1.5em;
-// }
-
 .app-header__nav li {
   margin: 10px;
 }
@@ -137,6 +128,7 @@ ul {
   color: white;
 }
 
+<<<<<<< HEAD
 #dashboard *, footer {
   color: white;
 }
@@ -147,6 +139,13 @@ ul {
 }
 
 .nav-link:hover {
+=======
+.nav-link a:hover {
+  color: #d4af37;
+}
+
+.nav-item a:hover {
+>>>>>>> d7ce08f24ddc9123c5ea1ee9c19e90e10437bffe
   color: #d4af37;
 }
 
@@ -159,6 +158,7 @@ ul {
   padding-top: 10px;
 }
 
+<<<<<<< HEAD
 #footer-list li{
   text-decoration: none;
 }
@@ -172,6 +172,8 @@ ul {
   text-align: center;
   font-size: .75em;
 }
+=======
+>>>>>>> d7ce08f24ddc9123c5ea1ee9c19e90e10437bffe
 @import "bootstrap";
 /* Import scss content */
 @import "**/*";

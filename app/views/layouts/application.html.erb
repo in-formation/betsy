@@ -22,7 +22,6 @@
 
       <nav class="app-header__nav">
         <ul class="nav app-header__site-nav-container">
-          <li><%=link_to "Cart", cart_path, class:"nav-link" %></li>
           <li class="nav-item app-header__nav_item">
             <%=link_to "Home", root_path, class:"nav-link" %>
           </li>
@@ -61,6 +60,7 @@
             <% end %>
             </div>
           </li>
+          <li><%=link_to "Cart", cart_path, class:"nav-link" %></li>
           <div id="login-buttons">
             <% if session[:user_id] == nil%>
               <li class="nav-item app-header__nav_item">
@@ -77,7 +77,6 @@
               </li>
             <% end %> 
           </div>
-          </li>
           </ul>
       </nav>
     </header>

@@ -10,21 +10,17 @@
 }
 
 .category-btn-container {
-  display: block;
-  float: right;
+  display: flex;
+  justify-content: center;
+  // float: right;
   margin-bottom: 2em;
-  margin-right: 2em;
-  background-color: red;
 }
 .new-category-btn {
-  opacity: 0.2;
-  float: right;
-  margin-right: 5em;
-  // display: flex;
-  // align-items: right;
+  font-size: 1.5em;
+}
 
-  // margin: auto;
-  // align-items: end;
+.new-category-btn:hover {
+  color: #d4af37;
 }
 
 .categories-container {
