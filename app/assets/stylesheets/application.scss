@@ -153,6 +153,18 @@ ul {
   color: white;
 }
 
+#footer-list {
+  padding-top: 10px;
+}
+
+#footer-list li{
+  text-decoration: none;
+}
+
+#footer-list li a:hover {
+  color: #d4af37;
+}
+
 .copyright {
   text-align: center;
   font-size: .75em;
