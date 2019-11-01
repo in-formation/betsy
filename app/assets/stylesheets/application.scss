@@ -13,7 +13,9 @@
  */
 
 /* Custom bootstrap variables must be set or imported *before* bootstrap. */
-
+@import "bootstrap";
+/* Import scss content */
+@import "**/*";
 
 body {
   display: flex;
@@ -23,7 +25,7 @@ body {
   font-family: 'Noto Serif KR', serif;
 }
 
-.alert__container {
+.alert___container {
   background-color: #242424;
 }
 
@@ -122,15 +124,6 @@ ul {
   color: white;
 }
 
-
-// .app-header__nav ul {
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: space-around;
-//   align-items: center;
-//   margin-bottom: 1.5em;
-// }
-
 .app-header__nav li {
   margin: 10px;
 }
@@ -148,7 +141,12 @@ ul {
   padding-bottom: 10px;
 }
 
-.nav-link:hover {
+
+.nav-link a:hover {
+  color: #d4af37;
+}
+
+.nav-item a:hover {
   color: #d4af37;
 }
 
@@ -168,6 +166,7 @@ ul {
 #footer-list li a:hover {
   color: #d4af37;
 }
+
 
 .copyright {
   text-align: center;
