@@ -13,9 +13,7 @@
  */
 
 /* Custom bootstrap variables must be set or imported *before* bootstrap. */
-@import "bootstrap";
-/* Import scss content */
-@import "**/*";
+
 
 body {
   display: flex;
@@ -29,19 +27,17 @@ html, header {
   background-color: black;
 }
 
-
 main {
   background-color: #242424;
 }
 
 body, footer {
-  background: #242424;
+  background-color: #242424;
 }
 
 h1 {
   padding: .5em;
 }
-
 
 // found on https://codepen.io/liuzenan/pen/nCJpo
 
@@ -124,10 +120,6 @@ ul {
   margin: 10px;
 }
 
-.nav-link {
-  color: white;
-}
-
 .nav-link a:hover {
   color: #d4af37;
 }
@@ -136,8 +128,7 @@ ul {
   color: #d4af37;
 }
 
-
-#dashboard *, footer {
+#dashboard, footer {
   color: white;
 }
 
@@ -150,7 +141,7 @@ ul {
   color: #d4af37;
 }
 
-#footer * {
+#footer {
   background: black;
   color: white;
 }
@@ -171,6 +162,13 @@ ul {
   text-align: center;
   font-size: .75em;
 }
+
+.dropdown-items {
+  color: black;
+}
+
+
+
 @import "bootstrap";
 /* Import scss content */
 @import "**/*";
