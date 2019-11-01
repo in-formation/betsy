@@ -21,11 +21,14 @@
   height: auto;
 }
 
-.card-img-top {
-  width: 100%;
-  object-fit: cover;
+.product-photo {
+  max-height: 80em;
+  width: auto;
 }
 
+.product {
+  align-items: center;
+}
 #not-found {
   width: 100%;
   object-fit: cover;
