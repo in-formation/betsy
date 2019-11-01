@@ -22,6 +22,9 @@ div.carousel-item, div.active {
   -webkit-text-fill-color: white;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color:black;
+  position: relative;
+  left: auto;
+  right: auto;
 }
 
 .newly_added__header {
@@ -52,6 +55,8 @@ div.carousel-item, div.active {
   grid-column-end: 2;
   align-items: center;
   padding: 1.5rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
 }
 
 .spotlight {
