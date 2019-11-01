@@ -14,6 +14,10 @@
 
 /* Custom bootstrap variables must be set or imported *before* bootstrap. */
 
+@import "bootstrap";
+/* Import scss content */
+@import "**/*";
+
 
 body {
   display: flex;
@@ -132,8 +136,7 @@ ul {
   color: #d4af37;
 }
 
-#dashboard, footer {
-
+#dashboard footer {
   color: white;
 }
 
@@ -143,12 +146,15 @@ ul {
 }
 
 .nav-link:hover {
-.nav-link a:hover {
   color: #d4af37;
 }
 
 .nav-item a:hover {
   color: #d4af37;
+}
+
+a.dropdown-item {
+  color: black;
 }
 
 #footer {
@@ -177,8 +183,3 @@ ul {
   color: black;
 }
 
-
-
-@import "bootstrap";
-/* Import scss content */
-@import "**/*";
