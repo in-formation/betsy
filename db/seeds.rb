@@ -64,6 +64,26 @@ end
 
 puts "#{product_failures.length} products failed to save"
 
+REVIEW_FILE = Rails.root.join('db','reviews-seeds.csv')
+puts "Loading raw product data from #{REVIEW_FILE}"
+
+review_failures = []
+CSV.foreach(REVIEW_FILE, :headers => true) do |row|
+  review = Review.new
+  review.rating = row['rating']
+  review.review_text = row['text']
+  review.product_id = Product.find(rand(1..Product.all.count)).id
+  successful = review.save
+  if !successful
+    review_failures << review
+    puts "Failed to save review #{review.inspect}"
+  else
+    puts "Created review: #{review.inspect}"
+  end
+end
+
+puts "#{review_failures.length} reviews failed to save"
+
 puts "Manually resetting PK sequence on each table"
 ActiveRecord::Base.connection.tables.each do |t|
   ActiveRecord::Base.connection.reset_pk_sequence!(t)

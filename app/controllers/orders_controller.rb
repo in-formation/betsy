@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  skip_before_action :require_login, only: [:cart, :checkout, :update]
+  skip_before_action :require_login, only: [:cart, :checkout, :confirmation, :update]
   
   
   def cart
@@ -50,7 +50,7 @@ class OrdersController < ApplicationController
         flash[:status] = :success
         flash[:result_text] = "Successfully completed order!"
         session[:order_id] = nil
-        redirect_to root_path
+        redirect_to confirmation_path
       else
         render :checkout
       end
@@ -71,6 +71,11 @@ class OrdersController < ApplicationController
     @order.save
     
     redirect_to request.referrer
+  end
+
+  def confirmation
+    @order = Order.where(status: "paid").last
+    @items = @order.order_items
   end
   
   private
