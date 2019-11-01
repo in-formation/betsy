@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get "/checkout", to: "orders#checkout", as: "checkout"
   post "/orders/:id", to: "orders#complete", as: "complete_order"
   get "/dashboard", to: "users#dashboard", as: "dashboard"
+  get "/confirmation", to: "orders#confirmation", as: "confirmation"
   patch "/orders/:id/complete", to: "orders#update_status", as: "update_status"
   
   resources :products, except: :destroy do

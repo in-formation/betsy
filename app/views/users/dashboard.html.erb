@@ -2,22 +2,22 @@
   <body>
     <main id="dashboard">
       <div class="dashboard-header">
-        <section>
+        <section class="dashsec">
           <h2>Merchant Summary: <%= @user.name %></h2>
           <p>Joined site <%= format_date(@user.created_at) %></p>
         </section>
 
-        <section>
+        <section class="dashsec">
           <%= link_to "Add a product", new_product_path, class:"btn btn-dark"%>
           <%= link_to "View products", user_path(@user.id), class:"btn btn-dark"%>
           <%= link_to "Add a category", new_category_path, class:"btn btn-dark"%>
         </section>
       </div>
 
-      <section>
+      <section class="dashsec">
 
         <table class="dashboard-order-table table">
-          <thead>
+          <thead id="dashhead">
             <tr>
               <th> Order Id </th>
               <th> Order Status </th>
@@ -69,7 +69,7 @@
           </tbody>
         </table>
       </section>
-      <section>
+      <section class="dashsec">
         <table class="dashboard-rev-table">
           <thead>
             <tr>

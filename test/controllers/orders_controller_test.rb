@@ -97,6 +97,16 @@ describe OrdersController do
       end
       
     end
+
+    describe "confirmation" do
+      it "can get the confirmation path" do
+        perform_login
+        
+        get confirmation_path
+        
+        must_respond_with :success
+      end
+    end
   end
   
   describe "guest user" do
@@ -171,9 +181,18 @@ describe OrdersController do
         
       end
 
-      it "won't update an existing order with bad data" do
-
-      end
+  
     end
+
+    describe "confirmation" do
+      it "can get the confirmation path" do
+        
+        @order = orders(:order2)
+        
+        get confirmation_path
+        
+        must_respond_with :success
+      end
+    end 
   end
 end
