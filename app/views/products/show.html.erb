@@ -1,36 +1,55 @@
 <main>
-  <h2><%= @product.name %></h2>
-
-  <section>
+  <section class="product-show">
+      <h2><%= @product.name %></h2>
+      <p class="edit-link"> <%= link_to "Edit", edit_product_path(@product.id) %> </p>
       <div>
-        <p class="product-info"> <%= link_to "Edit", edit_product_path(@product.id) %> </p>
-          <% if @product.photo_url == nil || @product.photo_url.length < 1 %>
-            <%= image_tag("https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png", :alt => "not found", class:"card-img-top") %>
-          <% else %>
-            <%= image_tag(@product.photo_url, :alt => @product.name, class:"card-img-top") %>
-          <% end %>        
-        <p class="product-info"> <%= @product.price %> </p>
-        <p class="product-info"> <%= @product.qty %> </p>
-        <p class="product-info"> <%= @product.description %> </p>
-        <p class="product-info"> Categories: 
+        <% if @product.photo_url == nil || @product.photo_url.length < 1 %>
+          <%= image_tag("https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png", :alt => "not found", class: "product-image") %>
+        <% else %>
+          <%= image_tag(@product.photo_url, :alt => @product.name, class:"product-image") %>
+        <% end %>   
+      </div>
+
+      <div class="product-details">   
+        <p> $<%= sprintf('%.2f', @product.price) %> </p>
+        <p> Stock: <%= @product.qty %> </p>
+        <p> <%= @product.description %> </p>
+        <p> Categories: 
           <% @product.categories.each do |category| %> 
-          <%= category.name %>
+          <%= category.name.capitalize %>
           <% end %>
         </p>
       </div>
 
-      <% if @product.user_id != session[:user_id] %>
-        <%= render :template => 'reviews/new' %>
-      <% end %>
 
-      <%= render :template => 'order_items/new' %>
-      <div>
+
+      <%= render :template => 'order_items/new', class:"order-product" %>
+
+      <div class="product-review-container">
+        <h2>Review Summary</h2>
+        <h4>
+          Average Rating: 
+            <% @product.avg_rating.times do  %> 
+              <%= image_tag("https://www.pngkey.com/png/detail/6-61795_money-dollar-sign-in-a-square-comments-dollar.png", :alt => "dollar sign", id: "review-image")%>
+            <% end %>
+        </h4>
+
         <% @product.reviews.each do |review| %>
-          <p>
-            <h3> Reviews </h3>
-            <p><%= review.rating %> </p>
+          <section class="product-review">
+            <p>
+              <% review.rating.times do  %> 
+                <%= image_tag("https://www.pngkey.com/png/detail/6-61795_money-dollar-sign-in-a-square-comments-dollar.png", :alt => "dollar sign", id: "review-image")%>
+              <% end %>
+            </p>
             <p> <%= review.review_text %> </p>
-          </p>
+          </section>
+        <% end %>
+      </div>
+
+      <div class="submit-review">
+        <h3>Submit Rating</h3>
+        <% if @product.user_id != session[:user_id] %>
+          <%= render :template => 'reviews/new' %>
         <% end %>
       </div>
   </section>
