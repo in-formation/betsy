@@ -51,6 +51,7 @@ describe OrderItemsController do
       must_respond_with :redirect
       
     end
+
     
   end
   
@@ -91,7 +92,7 @@ describe OrderItemsController do
       order_item = order_items(:oi1)
       
       params = { 
-        qty: 13 
+        qty: 0
       }
       
       
@@ -102,6 +103,7 @@ describe OrderItemsController do
       
       
       must_respond_with :redirect
+      must_redirect_to cart_path
       
     end
   end

@@ -14,55 +14,72 @@
 
   <body>
     <header class="app-header__header">
-      <section id="top-section">
       <section id="site-title">
-        <h1 class="shimmer">
-          bill$ie
+        <h1>
+          <%= link_to "bill$ie", root_path, class:"shimmer" %>
         </h1>
       </section>
 
-      <section id="cart-section">
-        <%=link_to "Cart", cart_path, class:"nav-link" %>
-      </section>
-
-      <section class="nav-links">
       <nav class="app-header__nav">
         <ul class="nav app-header__site-nav-container">
+          <li><%=link_to "Cart", cart_path, class:"nav-link" %></li>
           <li class="nav-item app-header__nav_item">
             <%=link_to "Home", root_path, class:"nav-link" %>
           </li>
-          <li class="nav-item app-header__nav_item">
-            <%=link_to "Products", products_path, class:"nav-link" %>
+          <li>
+            <%=link_to "Products", products_path, class:"nav-link"%>
           </li>
-          <li class="nav-item app-header__nav_item">
-            <%=link_to "Categories", categories_path, class:"nav-link"%>
-            <%# <div class="dropdown-content">
-              <% categories.each do |category|%>
-                <%#= link_to category.name, category_path(category.id)%>
-              <%# end %>
-            <%# </div> %>
+          <li class="nav-item dropdown">
+          <%= link_to "Browse by Category", categories_path, class:"nav-link dropdown-toggle", 'data-toggle' => 'dropdown' %>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <% if Category.all.length > 4 %>
+            <% Category.all.first(4).each do |category| %>
+                <%= link_to category.name, category_path(category.id), class:"dropdown-item" %>
+              <% end %>
+              <div class="dropdown-divider"></div>
+              <%= link_to "All Categories", categories_path, class:"dropdown-item"%>
+            <% else %>
+              <% Category.all.each do |category| %>
+                <%= link_to category.name, category_path(category.id), class:"dropdown-item all-categories" %>
+              <% end %>
+            <% end %>
+            </div>
           </li>
-          <li class="nav-item app-header__nav_item">
-            <%=link_to "Merchants", users_path, class:"nav-link" %>
+          <li class="nav-item dropdown">
+          <%= link_to "Browse by Merchant", users_path, class:"nav-link dropdown-toggle", 'data-toggle' => 'dropdown' %>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <% if User.all.length > 4 %>
+            <% User.all.first(4).each do |user| %>
+                <%= link_to user.name, user_path(user.id), class:"dropdown-item" %>
+              <% end %>
+              <div class="dropdown-divider"></div>
+              <%= link_to "All Merchants", users_path, class:"dropdown-item"%>
+            <% else %>
+              <% User.all.each do |user| %>
+                <%= link_to user.name, user_path(user.id), class:"dropdown-item all-users" %>
+              <% end %>
+            <% end %>
+            </div>
           </li>
-          <% if session[:user_id] == nil%>
-            <li class="nav-item app-header__nav_item">
-            <%=link_to "Log In", github_login_path, class:"btn btn-secondary" %>
-            </li>
-          <% else %>
-            <li class="nav-item app-header__nav_item">
-              <%=link_to "Logged in as: #{User.find_by(id: session[:user_id]).name}", user_path( User.find_by(id: session[:user_id]).id ), class:"btn btn-secondary" %>
-            </li>
-          <% end %>
-          <% if session[:user_id] != nil%>
-            <li class="nav-item app-header__nav_item">
-            <%=link_to "Log Out", logout_path, method: :delete, class:"btn btn-secondary" %>
-            </li>
-          <% end %> 
+          <div id="login-buttons">
+            <% if session[:user_id] == nil%>
+              <li class="nav-item app-header__nav_item">
+              <%=link_to "Log In", github_login_path, class:"btn btn-secondary" %>
+              </li>
+            <% else %>
+              <li class="nav-item app-header__nav_item">
+                <%=link_to "Logged in as: #{User.find_by(id: session[:user_id]).name}", dashboard_path, class:"btn btn-secondary" %>
+              </li>
+            <% end %>
+            <% if session[:user_id] != nil%>
+              <li class="nav-item app-header__nav_item">
+              <%=link_to "Log Out", logout_path, method: :delete, class:"btn btn-secondary" %>
+              </li>
+            <% end %> 
+          </div>
           </li>
           </ul>
       </nav>
-      </section>
     </header>
 
     <section class="alert__container">
@@ -86,4 +103,49 @@
 
     <%= yield %>
   </body>
+
+  <footer id="footer" class="page-footer font-small pt-4">
+    <div class="container-fluid text-center text-md-left">
+      <div class="row">
+        <hr class="clearfix w-100 d-md-none pb-3">
+        <div class="col-md-3 mb-md-0 mb-3">
+          <ul class="list-unstyled" id="footer-list">
+            <li>
+              <a href="#!">CONTACT US</a>
+            </li>
+            <li>
+              <a href="#!">ORDER STATUS</a>
+            </li>
+            <li>
+              <a href="#!">SHIPPING</a>
+            </li>
+            <li>
+              <a href="#!">RETURNS & EXCHANGES</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-md-3 mb-md-0 mb-3">
+          <ul class="list-unstyled" id="footer-list">
+            <li>
+              <a href="#!">ABOUT US</a>
+            </li>
+            <li>
+              <a href="#!">CAREERS</a>
+            </li>
+            <li>
+              <a href="#!">EVENTS</a>
+            </li>
+            <li>
+              <a href="#!">WHOLESALE</a>
+            </li>
+          </ul>
+
+        </div>
+      </div>
+  </div>
+  <div class="copyright">© 2019 Copyright: Stable Genius 
+  </div>
+</footer>
+
 </html>

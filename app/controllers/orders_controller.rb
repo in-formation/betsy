@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  skip_before_action :require_login, only: [:cart, :checkout, :update]
+  skip_before_action :require_login, only: [:cart, :checkout, :confirmation, :update]
   
   
   def cart
@@ -37,18 +37,22 @@ class OrdersController < ApplicationController
   def update
     
     @order = Order.find_by(id: params[:id])
-    
-    if @order.update(order_params)
-      if @order.status == "complete"
-        flash[:status] = :success
-        flash[:result_text] = "Successfully updated status!"
-        redirect_to order_path(@order.id)
-      else
-        @order.status = "paid"
+    if params[:status] == "complete"
+      @order.update(order_params)
+      flash[:status] = :success
+      flash[:result_text] = "Successfully updated status!"
+      redirect_to order_path(@order.id)
+    elsif @order.status == "pending"
+      @order.status = "paid"
+      @order.update_qty
+      @order.order_place = Time.now
+      if @order.update(order_params)
         flash[:status] = :success
         flash[:result_text] = "Successfully completed order!"
         session[:order_id] = nil
-        redirect_to root_path
+        redirect_to confirmation_path
+      else
+        render :checkout
       end
     else
       flash[:status] = :error
@@ -59,6 +63,19 @@ class OrdersController < ApplicationController
   
   def checkout
     @order = @current_order
+  end
+  
+  def update_status
+    @order = Order.find_by(id: params[:id])
+    @order.status = "complete"
+    @order.save
+    
+    redirect_to request.referrer
+  end
+
+  def confirmation
+    @order = Order.where(status: "paid").last
+    @items = @order.order_items
   end
   
   private
