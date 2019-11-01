@@ -1,6 +1,6 @@
 <main>
-  <h1>YOUR CART</h1>
-  <div class="cart-div">
+  <h1 class="carth1">YOUR CART</h1>
+  <div class="divcart">
   <%if @items.empty?%>
     <h2>There's nothing in your cart</h2>
     <%=link_to "Start Shopping", products_path %>
@@ -27,7 +27,7 @@
       </tbody>
     </table>
   </div>
-  <div class="cart-div">
+  <div class="divcart">
     <button class="btn btn-dark">
       <%=link_to "CHECKOUT", checkout_path%>
     </button>
