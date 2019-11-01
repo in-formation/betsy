@@ -22,11 +22,14 @@
   height: auto;
 }
 
-.card-img-top {
-  width: 100%;
-  object-fit: cover;
+.product-photo {
+  max-height: 80em;
+  width: auto;
 }
 
+.product {
+  align-items: center;
+}
 #not-found {
   width: 100%;
   object-fit: cover;
@@ -63,4 +66,54 @@
   margin-bottom: 1em;
   display: flex;
   justify-content: space-between
+}
+
+.product-show {
+  text-align: center;
+  padding-bottom: 15px;
+  padding-top: 5em;
+}
+
+#edit-link {
+  font-size: .5em;
+  text-align: right;
+}
+.product-image {
+  width: 40em;
+  height: auto;
+}
+
+.product-review-container {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 30px;
+  padding-top: 75px;
+}
+
+.product-review-container h2 {
+  font-weight: bold;
+}
+
+.product-review {
+  border-bottom: .5px solid white;
+  text-align: left;
+  padding-top: 15px;
+}
+
+#review-image {
+  width: 20px;
+  height: auto;
+}
+
+label[for="review_text"] {
+  display:none;
+}
+
+#review-submit {
+  padding-top: .5em;
+}
+
+.submit-review {
+  padding-top: 1em;
 }
