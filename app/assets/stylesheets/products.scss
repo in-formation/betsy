@@ -1,14 +1,15 @@
 // Place all the styles related to the Products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
+.products-main * {
+  font-family: 'Noto Serif KR', serif;
+  letter-spacing: 2px;
+}
 
 .d-flex, .p-2 {
   display: flex;
-  // justify-content: space-around;
-  // flex-wrap: wrap;
-  // flex-direction: column;
   margin: 2em;
+  padding-top: 40px;
 }
 
 .card-columns {
@@ -36,24 +37,30 @@
   justify-content: center;
 }
 
+.card-title a {
+  color: black;
+  text-decoration: none;
+}
+
+.card-title a:hover {
+  color: #d4af37;
+}
+
 .card-body {
   display: flex;
   justify-content: space-around;
+  color: black;
 }
 
 .product-btn-container {
   display: block;
   float: right;
-  margin-bottom: 4em;
   margin-right: 2em;
-  background-color: red;
-
+  margin-top: 2em;
 }
-.new-product-btn {
-  opacity: 0.2;
-  // display: flex;
-  // align-items: right;
 
-  // margin: auto;
-  // align-items: end;
+.products-title-container {
+  margin-bottom: 1em;
+  display: flex;
+  justify-content: space-between
 }
