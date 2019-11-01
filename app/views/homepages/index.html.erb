@@ -19,7 +19,7 @@
               <h4><strong><%=product.description %></strong></h4>
             </div>
         </div>
-        <% Product.all.each do |product| %>
+        <% Product.all.sample(Product.all.count).each do |product| %>
           <div class="carousel-item">
             <%= link_to image_tag(product.photo_url, alt:product.name, class:"d-block w-50"),product_path(product.id) %>
             <div class="carousel-caption d-none d-md-block">
