@@ -8,14 +8,14 @@
         </section>
 
         <section>
-          <%= link_to "Add a product", new_product_path, class:"btn btn-primary"%>
-          <%= link_to "View products", user_path(@user.id), class:"btn btn-primary"%>
-          <%= link_to "Add a category", new_category_path, class:"btn btn-primary"%>
+          <%= link_to "Add a product", new_product_path, class:"btn btn-dark"%>
+          <%= link_to "View products", user_path(@user.id), class:"btn btn-dark"%>
+          <%= link_to "Add a category", new_category_path, class:"btn btn-dark"%>
         </section>
       </div>
 
       <section>
-      
+
         <table class="dashboard-order-table table">
           <thead>
             <tr>
@@ -34,7 +34,7 @@
                 <td>
                   <% if order.status == "paid"%>
                     <p><%= order.status.capitalize %> </p>
-                    <p><%= link_to "Mark as Complete", update_status_path(order.id), method: :patch, class:"btn btn-primary" %></p>
+                    <p><%= link_to "Mark as Complete", update_status_path(order.id), method: :patch, class:"btn btn-dark" %></p>
                   <% else %>
                     <%= order.status.capitalize%>
                   <% end %>
